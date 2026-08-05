@@ -16,6 +16,11 @@ ENV NEXT_PUBLIC_PW_TEST=$NEXT_PUBLIC_PW_TEST
 # Keep Docker builds defaulting to false to avoid the memory hit.
 ARG NEXT_PUBLIC_SOURCEMAPS="false"
 ENV NEXT_PUBLIC_SOURCEMAPS=$NEXT_PUBLIC_SOURCEMAPS
+# Public origin baked into the client bundle (Next inlines NEXT_PUBLIC_* at
+# build). The browser API client calls `${NEXT_PUBLIC_FRONTEND_BASE_URL}/api/proxy`,
+# so a hosted deployment must build with its real origin, not localhost.
+ARG NEXT_PUBLIC_FRONTEND_BASE_URL="http://localhost:3000"
+ENV NEXT_PUBLIC_FRONTEND_BASE_URL=$NEXT_PUBLIC_FRONTEND_BASE_URL
 ENV NODE_ENV="production"
 # Merge env files appropriately based on environment
 RUN if [ -f .env.production ]; then \
