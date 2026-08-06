@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/atoms/Button/Button";
 import { Input } from "@/components/atoms/Input/Input";
+import { Text } from "@/components/atoms/Text/Text";
 import {
   Form,
   FormControl,
@@ -60,7 +61,19 @@ export function ApiKeyConnectForm({
           <FormItem>
             <FormControl>
               {isAimlapi ? (
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <Text
+                      variant="large-medium"
+                      as="span"
+                      className="text-black"
+                    >
+                      API key
+                    </Text>
+                    <Text variant="small" as="span" className="!text-zinc-400">
+                      Have a key? Paste it here.
+                    </Text>
+                  </div>
                   <div className="flex items-start gap-3">
                     <div className="flex-1">
                       <Input
@@ -70,13 +83,15 @@ export function ApiKeyConnectForm({
                         autoComplete="new-password"
                         spellCheck={false}
                         label="API key"
+                        hideLabel
                         placeholder="sk-..."
-                        hint="Have a key? Paste it here."
                         wrapperClassName="!mb-0"
                       />
                     </div>
-                    <span className="pt-9 text-sm text-zinc-400">or</span>
-                    <div className="flex flex-col items-center gap-1 pt-[1.65rem]">
+                    <span className="flex h-[2.875rem] items-center text-sm text-zinc-400">
+                      or
+                    </span>
+                    <div className="flex flex-col items-center gap-1">
                       <Button
                         type="button"
                         variant="primary"
@@ -87,7 +102,7 @@ export function ApiKeyConnectForm({
                       >
                         Get API key
                       </Button>
-                      <span className="text-xs text-zinc-500">
+                      <span className="whitespace-nowrap text-xs text-zinc-500">
                         Continue with aimlapi.com
                       </span>
                     </div>

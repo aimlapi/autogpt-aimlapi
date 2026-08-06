@@ -62,8 +62,10 @@ export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args
     setOauthMessage(null);
 
     // Open the consent tab synchronously so pop-up blockers allow it, then
-    // point it at the verification URL once the backend returns one.
-    const consentWindow = window.open("", "_blank", "noopener,noreferrer");
+    // point it at the verification URL once the backend returns one. Do NOT
+    // pass `noopener` here: with it, window.open() returns null and we lose the
+    // handle needed to redirect the tab — leaving a blank about:blank page.
+    const consentWindow = window.open("about:blank", "_blank");
 
     try {
       const start = await postProxy<{
@@ -74,7 +76,7 @@ export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args
       }>("api/aimlapi/authorize/start", {});
 
       if (consentWindow) consentWindow.location.href = start.verification_uri;
-      else window.open(start.verification_uri, "_blank", "noopener,noreferrer");
+      else window.open(start.verification_uri, "_blank");
 
       const intervalMs = Math.max(1, start.interval) * 1000;
       const deadline = Date.now() + Math.max(1, start.expires_in) * 1000;
