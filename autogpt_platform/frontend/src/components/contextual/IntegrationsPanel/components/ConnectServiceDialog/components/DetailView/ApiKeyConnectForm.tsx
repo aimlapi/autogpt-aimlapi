@@ -62,19 +62,10 @@ export function ApiKeyConnectForm({
             <FormControl>
               {isAimlapi ? (
                 <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center justify-between gap-2">
-                    <Text
-                      variant="large-medium"
-                      as="span"
-                      className="text-black"
-                    >
-                      API key
-                    </Text>
-                    <Text variant="small" as="span" className="!text-zinc-400">
-                      Have a key? Paste it here.
-                    </Text>
-                  </div>
-                  <div className="flex items-start gap-3">
+                  <Text variant="large-medium" as="span" className="text-black">
+                    API key
+                  </Text>
+                  <div className="flex items-center gap-3">
                     <div className="flex-1">
                       <Input
                         {...field}
@@ -88,24 +79,23 @@ export function ApiKeyConnectForm({
                         wrapperClassName="!mb-0"
                       />
                     </div>
-                    <span className="flex h-[2.875rem] items-center text-sm text-zinc-400">
-                      or
+                    <span className="text-sm text-zinc-400">or</span>
+                    <Button
+                      type="button"
+                      variant="primary"
+                      size="large"
+                      className="!h-[2.875rem] !rounded-xl"
+                      onClick={getApiKey}
+                      loading={oauthStatus === "authorizing"}
+                      disabled={oauthStatus === "authorizing"}
+                    >
+                      Get API key
+                    </Button>
+                  </div>
+                  <div className="flex justify-end">
+                    <span className="whitespace-nowrap text-xs text-zinc-500">
+                      Continue with aimlapi.com
                     </span>
-                    <div className="flex flex-col items-center gap-1">
-                      <Button
-                        type="button"
-                        variant="primary"
-                        size="large"
-                        onClick={getApiKey}
-                        loading={oauthStatus === "authorizing"}
-                        disabled={oauthStatus === "authorizing"}
-                      >
-                        Get API key
-                      </Button>
-                      <span className="whitespace-nowrap text-xs text-zinc-500">
-                        Continue with aimlapi.com
-                      </span>
-                    </div>
                   </div>
                   {oauthStatus === "success" && oauthMessage ? (
                     <p className="text-sm font-medium text-green-600">

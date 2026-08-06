@@ -70,7 +70,7 @@ export function DetailView({ provider, onBack, onSuccess }: Props) {
             {provider.name}
           </Text>
           {description ? (
-            <Text variant="small" className="truncate text-[#83838C]">
+            <Text variant="small" className="line-clamp-2 text-[#83838C]">
               {description}
             </Text>
           ) : null}
