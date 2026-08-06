@@ -92,11 +92,6 @@ export function ApiKeyConnectForm({
                       Get API key
                     </Button>
                   </div>
-                  <div className="flex justify-end">
-                    <span className="whitespace-nowrap text-xs text-zinc-500">
-                      Continue with aimlapi.com
-                    </span>
-                  </div>
                   {oauthStatus === "success" && oauthMessage ? (
                     <p className="text-sm font-medium text-green-600">
                       {oauthMessage}
