@@ -24,6 +24,7 @@ from backend.blocks._base import (
     BlockSchemaInput,
     BlockSchemaOutput,
 )
+from backend.blocks.aiml_models import load_aiml_catalog, member_name
 from backend.data.model import (
     APIKeyCredentials,
     CredentialsField,
@@ -105,6 +106,12 @@ class ModelMetadata(NamedTuple):
     provider_name: str
     creator_name: str
     price_tier: Literal[1, 2, 3]
+
+
+# AIMLAPI aggregator catalog, loaded once (live fetch → snapshot fallback).
+# Injected as ``aiml_api`` members by ``_register_aiml_catalog()`` below so a
+# single key serves every model.
+_AIML_CATALOG = load_aiml_catalog()
 
 
 class LlmModelMeta(EnumMeta):
@@ -277,6 +284,7 @@ class LlmModel(str, Enum, metaclass=LlmModelMeta):
                 "provider_name": metadata.provider_name,
                 "name": model_name,
                 "price_tier": metadata.price_tier,
+                "is_hottest": model in AIML_HOTTEST_MODELS,
             }
         json_schema["llm_model"] = True
         json_schema["llm_model_metadata"] = llm_model_metadata
@@ -789,6 +797,69 @@ MODEL_METADATA = {
     LlmModel.V0_1_5_LG: ModelMetadata("v0", 512000, 64000, "v0 1.5 LG", "V0", "V0", 1),
     LlmModel.V0_1_0_MD: ModelMetadata("v0", 128000, 64000, "v0 1.0 MD", "V0", "V0", 1),
 }
+
+# Inject the AIMLAPI catalog as ``aiml_api`` members + their metadata/pricing.
+# ``AIML_TOKEN_PRICING`` (member → USD-per-1M input/output) is consumed by
+# block_cost_config to build MODEL_COST/TOKEN_COST; ``AIML_HOTTEST_MODELS``
+# drives the "Hottest" section at the top of the model picker.
+AIML_HOTTEST_MODELS: set["LlmModel"] = set()
+AIML_TOKEN_PRICING: dict["LlmModel", tuple[float, float]] = {}
+
+
+def _add_llm_model_member(name: str, value: str) -> "LlmModel":
+    """Append a member to ``LlmModel`` after the class is built.
+
+    The full model catalog is fetched at runtime, so members are added here
+    rather than in the class body. Every consumer (picker schema, credential
+    discriminator, cost tables) iterates ``LlmModel`` and picks these up.
+    """
+    member = str.__new__(LlmModel, value)
+    member._name_ = name
+    member._value_ = value
+    member.__objclass__ = LlmModel
+    LlmModel._member_map_[name] = member
+    LlmModel._value2member_map_[value] = member
+    LlmModel._member_names_.append(name)
+    type.__setattr__(LlmModel, name, member)
+    return member
+
+
+def _register_aiml_catalog() -> None:
+    for model in _AIML_CATALOG:
+        # Skip ids that already resolve to a member — directly or via
+        # ``_missing_``/``_OPENROUTER_ALIASES`` — so an aggregator entry never
+        # shadows a native model and reroutes existing graphs through AIMLAPI.
+        try:
+            LlmModel(model.id)
+            continue
+        except ValueError:
+            pass
+
+        name = member_name(model.id)
+        unique = name
+        suffix = 2
+        while unique in LlmModel._member_map_:
+            unique = f"{name}_{suffix}"
+            suffix += 1
+        member = _add_llm_model_member(unique, model.id)
+
+        output_price = model.output_usd_per_1m or 0.0
+        price_tier = 1 if output_price <= 5 else 2 if output_price <= 25 else 3
+        MODEL_METADATA[member] = ModelMetadata(
+            "aiml_api",
+            model.context_window or 128000,
+            model.max_output_tokens,
+            model.name,
+            "aimlapi.com",
+            model.developer,
+            price_tier,
+        )
+        AIML_TOKEN_PRICING[member] = (model.input_usd_per_1m or 0.0, output_price)
+        if model.is_hottest:
+            AIML_HOTTEST_MODELS.add(member)
+
+
+_register_aiml_catalog()
 
 DEFAULT_LLM_MODEL = LlmModel.GPT5_6_TERRA
 
