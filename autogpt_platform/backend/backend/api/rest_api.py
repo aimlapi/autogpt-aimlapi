@@ -86,6 +86,7 @@ from backend.util.workspace_storage import shutdown_workspace_storage
 
 from .external.fastapi_app import external_api
 from .features.analytics import router as analytics_router
+from .features.aimlapi.router import router as aimlapi_router
 from .features.integrations.router import router as integrations_router
 from .middleware.security import SecurityHeadersMiddleware
 from .utils.cors import build_cors_params
@@ -355,6 +356,11 @@ app.include_router(
     integrations_router,
     prefix="/api/integrations",
     tags=["v1", "integrations"],
+)
+app.include_router(
+    aimlapi_router,
+    prefix="/api/aimlapi",
+    tags=["aimlapi"],
 )
 app.include_router(
     analytics_router,
