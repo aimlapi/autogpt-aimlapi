@@ -34,6 +34,7 @@ import asyncio
 import functools
 import json as json_module
 import logging
+import os
 from datetime import datetime, timezone
 from typing import Any, Literal, cast
 
@@ -364,7 +365,9 @@ async def _dispatch_sync(
         )
     if provider == "aiml_api":
         return await _call_openai_compat(
-            base_url="https://api.aimlapi.com/v1",
+            base_url=os.getenv(
+                "AIMLAPI_INFERENCE_URL", "https://api.aimlapi.com/v1"
+            ),
             model=model,
             api_key=api_key,
             messages=messages,
