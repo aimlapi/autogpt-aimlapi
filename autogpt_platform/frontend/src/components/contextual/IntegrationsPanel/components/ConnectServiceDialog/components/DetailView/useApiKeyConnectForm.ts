@@ -71,7 +71,7 @@ export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args
         verification_uri: string;
         interval: number;
         expires_in: number;
-      }>("aimlapi/authorize/start", {});
+      }>("api/aimlapi/authorize/start", {});
 
       if (consentWindow) consentWindow.location.href = start.verification_uri;
       else window.open(start.verification_uri, "_blank", "noopener,noreferrer");
@@ -82,7 +82,7 @@ export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args
       while (Date.now() < deadline) {
         await sleep(intervalMs);
         const poll = await postProxy<{ status: string; api_key: string | null }>(
-          "aimlapi/authorize/poll",
+          "api/aimlapi/authorize/poll",
           { request_id: start.request_id },
         );
         if (poll.status === "ready" && poll.api_key) {
