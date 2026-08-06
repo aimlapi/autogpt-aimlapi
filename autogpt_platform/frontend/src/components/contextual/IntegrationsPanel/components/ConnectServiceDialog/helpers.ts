@@ -7,11 +7,15 @@ export type AuthMethod = (typeof AuthType)[keyof typeof AuthType];
 
 export { AuthType };
 
+// Providers surfaced first in the "Connect a service" list, marked "Recommended".
+const RECOMMENDED_PROVIDERS: ReadonlySet<string> = new Set(["aiml_api"]);
+
 export interface ConnectableProvider {
   id: string;
   name: string;
   description?: string | null;
   supportedAuthTypes: AuthMethod[];
+  recommended?: boolean;
 }
 
 const KNOWN_AUTH_METHODS: ReadonlySet<AuthMethod> = new Set(
@@ -38,9 +42,14 @@ export function toConnectableProviders(
       name: formatProviderName(item.name),
       description: item.description,
       supportedAuthTypes: normalizeAuthTypes(item.supported_auth_types),
+      recommended: RECOMMENDED_PROVIDERS.has(item.name),
     });
   }
-  result.sort((a, b) => a.name.localeCompare(b.name));
+  // Recommended providers first, then alphabetical.
+  result.sort((a, b) => {
+    if (a.recommended !== b.recommended) return a.recommended ? -1 : 1;
+    return a.name.localeCompare(b.name);
+  });
   return result;
 }
 

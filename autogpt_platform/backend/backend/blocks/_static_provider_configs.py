@@ -21,7 +21,11 @@ from backend.sdk import ProviderBuilder
 
 _STATIC_PROVIDER_CONFIGS: dict[str, tuple[str, tuple[CredentialsType, ...]]] = {
     # LLM providers that share blocks/llm.py
-    "aiml_api": ("Unified access to 100+ AI models", ("api_key",)),
+    "aiml_api": (
+        "Access 1,000+ AI models: text, image, video, audio and embeddings - "
+        "through a single API key. One-click setup.",
+        ("api_key",),
+    ),
     "anthropic": ("Claude language models", ("api_key",)),
     "groq": ("Fast LLM inference", ("api_key",)),
     "llama_api": ("Llama model hosting", ("api_key",)),

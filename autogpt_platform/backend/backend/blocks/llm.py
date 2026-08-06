@@ -444,7 +444,13 @@ MODEL_METADATA = {
     ),  # claude-haiku-4-5-20251001
     # https://docs.aimlapi.com/api-overview/model-database/text-models
     LlmModel.AIML_API_LLAMA3_3_70B: ModelMetadata(
-        "aiml_api", 128000, None, "Llama 3.3 70B Instruct Turbo", "AI/ML", "Meta", 1
+        "aiml_api",
+        128000,
+        None,
+        "Llama 3.3 70B Instruct Turbo",
+        "aimlapi.com",
+        "Meta",
+        1,
     ),
     # https://console.groq.com/docs/models
     LlmModel.LLAMA3_3_70B: ModelMetadata(
