@@ -5,7 +5,7 @@ import { beautifyString, cn } from "@/lib/utils";
 
 // Providers surfaced with an "aimlapi.com" label + "Recommended" badge in the
 // builder integration list.
-const RECOMMENDED_PROVIDERS: Record<string, string> = {
+export const RECOMMENDED_PROVIDERS: Record<string, string> = {
   aiml_api: "aimlapi.com",
 };
 import Image from "next/image";
