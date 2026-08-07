@@ -46,11 +46,6 @@ export function LlmModelPicker({
 
   const modelsByCreator = useMemo(() => groupByCreator(models), [models]);
 
-  const hottestModels = useMemo(
-    () => models.filter((model) => model.is_hottest),
-    [models],
-  );
-
   const creators = useMemo(() => {
     return Array.from(modelsByCreator.keys()).sort((a, b) =>
       a.localeCompare(b),
@@ -153,23 +148,6 @@ export function LlmModelPicker({
       >
         {view === "creator" && (
           <div className="flex flex-col">
-            {hottestModels.length > 0 && (
-              <>
-                <div className="px-3 pb-1 pt-2 text-xs font-medium text-zinc-400">
-                  Hottest
-                </div>
-                {hottestModels.map((model) => (
-                  <LlmMenuItem
-                    key={model.name}
-                    title={getModelDisplayName(model)}
-                    icon={<LlmIcon value={model.creator} />}
-                    isActive={selectedModel?.name === model.name}
-                    onClick={() => handleSelectModel(model.name)}
-                  />
-                ))}
-                <div className="border-b border-zinc-200" />
-              </>
-            )}
             {recommendedModel && (
               <>
                 <LlmMenuItem

@@ -37,7 +37,6 @@ from backend.blocks.jina.embeddings import JinaEmbeddingBlock
 from backend.blocks.jina.fact_checker import FactCheckerBlock
 from backend.blocks.jina.search import ExtractWebsiteContentBlock, SearchTheWebBlock
 from backend.blocks.llm import (
-    AIML_TOKEN_PRICING,
     MODEL_METADATA,
     AIConversationBlock,
     AIListGeneratorBlock,
@@ -214,13 +213,6 @@ MODEL_COST: dict[LlmModel, int] = {
     LlmModel.V0_1_0_MD: 1,
 }
 
-# Flat per-call fallback tier for the dynamically-injected AIMLAPI models
-# (actual billing settles against the per-token TOKEN_COST rates below). Uses
-# the same price tier the model metadata carries, so the boot-time
-# completeness guard is satisfied for every aggregator model.
-for _aiml_model in AIML_TOKEN_PRICING:
-    MODEL_COST[_aiml_model] = MODEL_METADATA[_aiml_model].price_tier
-
 for model in LlmModel:
     if model not in MODEL_COST:
         raise ValueError(f"Missing MODEL_COST for model: {model}")
@@ -356,14 +348,6 @@ TOKEN_COST: dict[LlmModel, TokenRate] = {
     LlmModel.OPENAI_GPT_OSS_120B: TokenRate(input=23, output=90),
     LlmModel.OPENAI_GPT_OSS_20B: TokenRate(input=11, output=45),
 }
-
-# Per-token rates for the dynamically-injected AIMLAPI models, derived from the
-# catalog's published USD price. Credits/1M = USD/1M × 100 (1 credit ≈ $0.01)
-# × 1.5 margin — the same conversion the static entries above use.
-for _aiml_model, (_in_usd, _out_usd) in AIML_TOKEN_PRICING.items():
-    TOKEN_COST[_aiml_model] = TokenRate(
-        input=round(_in_usd * 150), output=round(_out_usd * 150)
-    )
 
 
 def compute_token_credits(

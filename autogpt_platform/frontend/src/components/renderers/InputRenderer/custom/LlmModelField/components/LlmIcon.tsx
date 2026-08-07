@@ -25,15 +25,6 @@ const creatorIconMap: Record<string, string> = {
   nousresearch: "/integrations/nousresearch.avif",
   perplexity: "/integrations/perplexity.webp",
   qwen: "/integrations/qwen.png",
-  // AIMLAPI aggregator provider tag (shown in the model's provider sub-menu).
-  aiml_api: "/integrations/aiml_api.png",
-  aimlapicom: "/integrations/aiml_api.png",
-  // Extra creator aliases so aggregator models group under a real logo instead
-  // of a letter chip (map to already-bundled assets).
-  deepseekai: "/integrations/deepseek.png",
-  moonshot: "/integrations/moonshot.png",
-  alibaba: "/integrations/qwen.png",
-  alibabacloud: "/integrations/qwen.png",
 };
 
 type Props = {
