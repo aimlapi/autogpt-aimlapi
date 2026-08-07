@@ -861,7 +861,32 @@ def _register_aiml_catalog() -> None:
 
 _register_aiml_catalog()
 
-DEFAULT_LLM_MODEL = LlmModel.GPT5_6_TERRA
+
+def _default_aiml_model() -> "LlmModel":
+    """Pick the default model from the AIMLAPI catalog.
+
+    Prefers a flagship, falls back to the first injected AIMLAPI model (the
+    catalog is hottest-first), and finally to a native model so a missing
+    catalog can never break import.
+    """
+    for candidate in ("openai/gpt-5.6-terra-pro", "anthropic/claude-sonnet-5"):
+        try:
+            member = LlmModel(candidate)
+        except ValueError:
+            continue
+        if member in AIML_TOKEN_PRICING:
+            return member
+    for model in _AIML_CATALOG:
+        try:
+            member = LlmModel(model.id)
+        except ValueError:
+            continue
+        if member in AIML_TOKEN_PRICING:
+            return member
+    return LlmModel.GPT5_6_TERRA
+
+
+DEFAULT_LLM_MODEL = _default_aiml_model()
 
 # Family-aware mapping for legacy model values that have been retired from the
 # `LlmModel` enum. Used by both the Prisma migration that rewrites stored graph

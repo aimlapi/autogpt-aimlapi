@@ -23,8 +23,12 @@ export function LlmModelField(props: FieldProps) {
     return (schema as LlmModelSchema)?.llm_model_metadata ?? {};
   }, [schema]);
 
+  // Aggregator build: only surface AIMLAPI-served models so every model in the
+  // picker runs on the single aimlapi.com key (native provider entries hidden).
   const models = useMemo(() => {
-    return Object.values(metadata);
+    return Object.values(metadata).filter(
+      (model) => model.provider === "aiml_api",
+    );
   }, [metadata]);
 
   const selectedName =
