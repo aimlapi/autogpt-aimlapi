@@ -1,18 +1,17 @@
 import logging
 from enum import Enum
-from typing import Literal
 
 from stagehand import AsyncStagehand
 from stagehand.types.session_act_params import Options as ActOptions
 
 from backend.blocks.llm import (
     MODEL_METADATA,
+    AICredentials,
+    AICredentialsField,
     LlmModel,
     ModelMetadata,
 )
 from backend.blocks.stagehand._config import stagehand as stagehand_provider
-from backend.data.model import CredentialsField
-from backend.integrations.providers import ProviderName
 from backend.sdk import (
     APIKeyCredentials,
     Block,
@@ -79,26 +78,6 @@ class StagehandRecommendedLlmModel(str, Enum):
         return MODEL_METADATA[LlmModel(self.value)].max_output_tokens
 
 
-# Stagehand only supports the OpenAI/Anthropic models above, so its LLM key
-# field advertises just those providers (unlike the shared AICredentials, which
-# lists every LLM provider and would surface Stagehand under each of them).
-StagehandModelProviderName = Literal[ProviderName.ANTHROPIC, ProviderName.OPENAI]
-StagehandModelCredentials = CredentialsMetaInput[
-    StagehandModelProviderName, Literal["api_key"]
-]
-
-
-def StagehandModelCredentialsField() -> StagehandModelCredentials:
-    return CredentialsField(
-        description="API key for the LLM provider Stagehand uses.",
-        discriminator="model",
-        discriminator_mapping={
-            model.value: model.metadata.provider
-            for model in StagehandRecommendedLlmModel
-        },
-    )
-
-
 class StagehandObserveBlock(Block):
     class Input(BlockSchemaInput):
         # Browserbase credentials (Stagehand provider) or raw API key
@@ -117,9 +96,7 @@ class StagehandObserveBlock(Block):
             default=StagehandRecommendedLlmModel.CLAUDE_4_6_SONNET,
             advanced=False,
         )
-        model_credentials: StagehandModelCredentials = (
-            StagehandModelCredentialsField()
-        )
+        model_credentials: AICredentials = AICredentialsField()
         url: str = SchemaField(
             description="URL to navigate to.",
         )
@@ -202,9 +179,7 @@ class StagehandActBlock(Block):
             default=StagehandRecommendedLlmModel.CLAUDE_4_6_SONNET,
             advanced=False,
         )
-        model_credentials: StagehandModelCredentials = (
-            StagehandModelCredentialsField()
-        )
+        model_credentials: AICredentials = AICredentialsField()
         url: str = SchemaField(
             description="URL to navigate to.",
         )
@@ -300,9 +275,7 @@ class StagehandExtractBlock(Block):
             default=StagehandRecommendedLlmModel.CLAUDE_4_6_SONNET,
             advanced=False,
         )
-        model_credentials: StagehandModelCredentials = (
-            StagehandModelCredentialsField()
-        )
+        model_credentials: AICredentials = AICredentialsField()
         url: str = SchemaField(
             description="URL to navigate to.",
         )
