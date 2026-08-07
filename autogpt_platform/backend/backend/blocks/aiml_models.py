@@ -115,14 +115,21 @@ def _from_snapshot_row(row: dict) -> AimlModel:
 
 
 def _dedupe_hottest_first(models: list[AimlModel]) -> list[AimlModel]:
-    seen: set[str] = set()
+    # Hottest first (stable) so the deduper keeps the hottest variant, then drop
+    # both exact-id repeats and API alias twins — the catalog exposes the same
+    # model under several id spellings (e.g. ``gemini-3.6-flash`` vs
+    # ``gemini-3-6-flash``), which share one (developer, display name).
+    ordered = sorted(models, key=lambda m: 0 if m.is_hottest else 1)
+    seen_ids: set[str] = set()
+    seen_names: set[tuple[str, str]] = set()
     unique: list[AimlModel] = []
-    for model in models:
-        if model.id in seen:
+    for model in ordered:
+        name_key = (model.developer, model.name)
+        if model.id in seen_ids or name_key in seen_names:
             continue
-        seen.add(model.id)
+        seen_ids.add(model.id)
+        seen_names.add(name_key)
         unique.append(model)
-    unique.sort(key=lambda m: 0 if m.is_hottest else 1)
     return unique
 
 

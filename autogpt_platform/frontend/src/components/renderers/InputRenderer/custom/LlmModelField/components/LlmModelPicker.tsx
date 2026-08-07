@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CaretDownIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, StarIcon } from "@phosphor-icons/react";
 import {
   Popover,
   PopoverContent,
@@ -23,6 +23,10 @@ import { LlmMenuItem } from "./LlmMenuItem";
 import { LlmPriceTier } from "./LlmPriceTier";
 
 type MenuView = "creator" | "model" | "provider";
+
+// Synthetic first group holding every hottest model, so it reads like the
+// creator groups below it instead of a flat list.
+const RECOMMENDED_GROUP = "Recommended";
 
 type Props = {
   models: LlmModelMetadata[];
@@ -81,8 +85,11 @@ export function LlmModelPicker({
   const currentCreator = activeCreator ?? creators[0] ?? null;
 
   const currentModels = useMemo(() => {
+    if (currentCreator === RECOMMENDED_GROUP) {
+      return hottestModels;
+    }
     return currentCreator ? (modelsByCreator.get(currentCreator) ?? []) : [];
-  }, [currentCreator, modelsByCreator]);
+  }, [currentCreator, modelsByCreator, hottestModels]);
 
   const currentCreatorIcon = useMemo(() => {
     return currentModels[0]?.creator ?? currentCreator;
@@ -154,32 +161,22 @@ export function LlmModelPicker({
         {view === "creator" && (
           <div className="flex flex-col">
             {hottestModels.length > 0 && (
-              <>
-                <div className="px-3 pb-1 pt-2 text-xs font-medium text-zinc-400">
-                  Hottest
-                </div>
-                {hottestModels.map((model) => (
-                  <LlmMenuItem
-                    key={model.name}
-                    title={getModelDisplayName(model)}
-                    icon={<LlmIcon value={model.creator} />}
-                    isActive={selectedModel?.name === model.name}
-                    onClick={() => handleSelectModel(model.name)}
+              <LlmMenuItem
+                title={RECOMMENDED_GROUP}
+                icon={
+                  <StarIcon
+                    size={20}
+                    weight="fill"
+                    className="text-amber-500"
                   />
-                ))}
-                <div className="border-b border-zinc-200" />
-              </>
-            )}
-            {recommendedModel && (
-              <>
-                <LlmMenuItem
-                  title={getModelDisplayName(recommendedModel)}
-                  subtitle="Recommended"
-                  icon={<LlmIcon value={recommendedModel.creator} />}
-                  onClick={() => handleSelectModel(recommendedModel.name)}
-                />
-                <div className="border-b border-zinc-200" />
-              </>
+                }
+                showChevron={true}
+                isActive={selectedModel?.is_hottest ?? false}
+                onClick={() => {
+                  setActiveCreator(RECOMMENDED_GROUP);
+                  setView("model");
+                }}
+              />
             )}
             {creators.map((creator) => (
               <LlmMenuItem
@@ -213,7 +210,11 @@ export function LlmModelPicker({
               <LlmMenuItem
                 key={entry.title}
                 title={entry.title}
-                icon={<LlmIcon value={currentCreatorIcon} />}
+                icon={
+                  <LlmIcon
+                    value={entry.entries[0]?.creator ?? currentCreatorIcon}
+                  />
+                }
                 rightSlot={<LlmPriceTier tier={entry.entries[0]?.price_tier} />}
                 showChevron={entry.providerCount > 1}
                 isActive={
