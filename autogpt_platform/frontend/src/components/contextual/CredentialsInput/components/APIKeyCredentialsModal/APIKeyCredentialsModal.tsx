@@ -5,11 +5,13 @@ import {
 } from "@/components/__legacy__/ui/form";
 import { Button } from "@/components/atoms/Button/Button";
 import { Input } from "@/components/atoms/Input/Input";
+import { Text } from "@/components/atoms/Text/Text";
 import { Dialog } from "@/components/molecules/Dialog/Dialog";
 import {
   BlockIOCredentialsSubSchema,
   CredentialsMetaInput,
 } from "@/lib/autogpt-server-api/types";
+import { useAimlapiGetApiKey } from "@/hooks/useAimlapiGetApiKey";
 import { useAPIKeyCredentialsModal } from "./useAPIKeyCredentialsModal";
 
 type Props = {
@@ -32,10 +34,16 @@ export function APIKeyCredentialsModal({
     isLoading,
     isSubmitting,
     supportsApiKey,
+    provider,
     providerName,
     schemaDescription,
     onSubmit,
   } = useAPIKeyCredentialsModal({ schema, siblingInputs, onCredentialsCreate });
+
+  const isAimlapi = provider === "aiml_api";
+  const { getApiKey, oauthStatus, oauthMessage } = useAimlapiGetApiKey((key) =>
+    form.setValue("apiKey", key, { shouldValidate: true, shouldDirty: true }),
+  );
 
   if (isLoading || !supportsApiKey) {
     return null;
@@ -52,7 +60,7 @@ export function APIKeyCredentialsModal({
       }}
       onClose={onClose}
       styling={{
-        maxWidth: "25rem",
+        maxWidth: isAimlapi ? "34rem" : "25rem",
       }}
     >
       <Dialog.Content>
@@ -81,8 +89,49 @@ export function APIKeyCredentialsModal({
             <FormField
               control={form.control}
               name="apiKey"
-              render={({ field }) => (
-                <>
+              render={({ field }) =>
+                isAimlapi ? (
+                  <div className="flex flex-col gap-1.5">
+                    <Text variant="large-medium" as="span" className="text-black">
+                      API Key
+                    </Text>
+                    <div className="flex items-center gap-3">
+                      <div className="flex-1">
+                        <Input
+                          id="apiKey"
+                          label="API Key"
+                          hideLabel
+                          type="password"
+                          placeholder="Enter API Key..."
+                          wrapperClassName="!mb-0"
+                          {...field}
+                        />
+                      </div>
+                      <span className="text-sm text-zinc-400">or</span>
+                      <Button
+                        type="button"
+                        variant="primary"
+                        size="large"
+                        className="!h-[2.875rem] !min-w-[11.55rem] !rounded-xl"
+                        onClick={getApiKey}
+                        loading={oauthStatus === "authorizing"}
+                        disabled={oauthStatus === "authorizing"}
+                      >
+                        Get API key
+                      </Button>
+                    </div>
+                    {oauthStatus === "success" && oauthMessage ? (
+                      <p className="text-sm font-medium text-green-600">
+                        {oauthMessage}
+                      </p>
+                    ) : null}
+                    {oauthStatus === "error" && oauthMessage ? (
+                      <p className="text-sm font-medium text-red-600">
+                        {oauthMessage}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : (
                   <Input
                     id="apiKey"
                     label="API Key"
@@ -103,8 +152,8 @@ export function APIKeyCredentialsModal({
                     }
                     {...field}
                   />
-                </>
-              )}
+                )
+              }
             />
 
             <FormField

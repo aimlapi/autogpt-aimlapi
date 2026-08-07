@@ -84,7 +84,7 @@ export function ApiKeyConnectForm({
                       type="button"
                       variant="primary"
                       size="large"
-                      className="!h-[2.875rem] !rounded-xl"
+                      className="!h-[2.875rem] !min-w-[11.55rem] !rounded-xl"
                       onClick={getApiKey}
                       loading={oauthStatus === "authorizing"}
                       disabled={oauthStatus === "authorizing"}
