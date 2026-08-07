@@ -1,5 +1,5 @@
 import { Button } from "@/components/__legacy__/ui/button";
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 import { IntegrationBlock } from "../IntergrationBlock";
 import { Skeleton } from "@/components/__legacy__/ui/skeleton";
 import { useIntegrationBlocks } from "./useIntegrationBlocks";
@@ -22,6 +22,18 @@ export const IntegrationBlocks = () => {
     error,
     refetch,
   } = useIntegrationBlocks();
+
+  // Stagehand blocks reach the aimlapi.com list only through the shared LLM
+  // credential (their models are OpenAI/Anthropic-only), so keep them after the
+  // model blocks that actually run on the aimlapi.com key.
+  const orderedBlocks = useMemo(() => {
+    if (integration !== "aiml_api") return allBlocks;
+    const stagehandRank = (name?: string) =>
+      name?.toLowerCase().startsWith("stagehand") ? 1 : 0;
+    return [...allBlocks].sort(
+      (a, b) => stagehandRank(a.name) - stagehandRank(b.name),
+    );
+  }, [allBlocks, integration]);
 
   if (blocksLoading) {
     return (
@@ -90,7 +102,7 @@ export const IntegrationBlocks = () => {
           </span>
         </div>
         <div className="space-y-3">
-          {allBlocks.map((block) => (
+          {orderedBlocks.map((block) => (
             <IntegrationBlock
               key={block.id}
               title={block.name}
