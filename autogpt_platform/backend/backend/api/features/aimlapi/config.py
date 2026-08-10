@@ -50,14 +50,6 @@ def resolve_endpoints() -> AimlapiEndpoints:
     )
 
 
-def resolve_inference_base_url() -> str:
-    # OpenAI-compatible inference base (same override the LLM transport uses),
-    # used to verify an API key against ``/chat/completions``.
-    return _env_or_default(
-        "AIMLAPI_INFERENCE_URL", "https://api.aimlapi.com/v1"
-    ).rstrip("/")
-
-
 def resolve_partner_id() -> str:
     return _env_or_default("AIMLAPI_PARTNER_ID", DEFAULT_AIMLAPI_PARTNER_ID)
 

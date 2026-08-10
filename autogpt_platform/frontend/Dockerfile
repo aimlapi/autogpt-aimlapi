@@ -21,6 +21,10 @@ ENV NEXT_PUBLIC_SOURCEMAPS=$NEXT_PUBLIC_SOURCEMAPS
 # so a hosted deployment must build with its real origin, not localhost.
 ARG NEXT_PUBLIC_FRONTEND_BASE_URL="http://localhost:3000"
 ENV NEXT_PUBLIC_FRONTEND_BASE_URL=$NEXT_PUBLIC_FRONTEND_BASE_URL
+# AIMLAPI inference base the browser hits directly to verify an entered API key
+# (GET /billing/balance). Defaults to production; a staging deploy overrides it.
+ARG NEXT_PUBLIC_AIMLAPI_API_URL="https://api.aimlapi.com/v1"
+ENV NEXT_PUBLIC_AIMLAPI_API_URL=$NEXT_PUBLIC_AIMLAPI_API_URL
 ENV NODE_ENV="production"
 # Merge env files appropriately based on environment
 RUN if [ -f .env.production ]; then \

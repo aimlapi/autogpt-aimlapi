@@ -6,19 +6,21 @@ export type AimlapiOAuthStatus = "idle" | "authorizing" | "success" | "error";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-// Verify a manually-entered AIMLAPI key via the backend (which calls AIMLAPI).
-// Returns false only when the key is definitively invalid; on a network/backend
-// error we can't tell, so return true (fail open) rather than block a save.
+const AIMLAPI_BASE_URL =
+  process.env.NEXT_PUBLIC_AIMLAPI_API_URL?.replace(/\/$/, "") ||
+  "https://api.aimlapi.com/v1";
+
+// Verify a manually-entered AIMLAPI key by calling the balance endpoint with it
+// (CORS-enabled, so the browser can hit it directly — no backend needed). A bad
+// key returns 401; anything else means the key authenticates. Returns false
+// only when the key is definitively invalid; on a network error we can't tell,
+// so return true (fail open) rather than block a legitimate save.
 export async function validateAimlapiApiKey(apiKey: string): Promise<boolean> {
   try {
-    const res = await fetch("/api/proxy/api/aimlapi/validate-key", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ api_key: apiKey }),
+    const res = await fetch(`${AIMLAPI_BASE_URL}/billing/balance`, {
+      headers: { Authorization: `Bearer ${apiKey}` },
     });
-    if (!res.ok) return true;
-    const data = (await res.json()) as { valid?: boolean };
-    return data.valid !== false;
+    return res.status !== 401;
   } catch {
     return true;
   }
