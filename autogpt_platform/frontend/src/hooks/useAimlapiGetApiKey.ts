@@ -6,6 +6,24 @@ export type AimlapiOAuthStatus = "idle" | "authorizing" | "success" | "error";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+// Verify a manually-entered AIMLAPI key via the backend (which calls AIMLAPI).
+// Returns false only when the key is definitively invalid; on a network/backend
+// error we can't tell, so return true (fail open) rather than block a save.
+export async function validateAimlapiApiKey(apiKey: string): Promise<boolean> {
+  try {
+    const res = await fetch("/api/proxy/api/aimlapi/validate-key", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ api_key: apiKey }),
+    });
+    if (!res.ok) return true;
+    const data = (await res.json()) as { valid?: boolean };
+    return data.valid !== false;
+  } catch {
+    return true;
+  }
+}
+
 // The AIMLAPI "Get API key" flow lives behind the frontend's server proxy,
 // which forwards `/api/proxy/<path>` to the backend and injects auth.
 async function postProxy<T>(path: string, body: unknown): Promise<T> {

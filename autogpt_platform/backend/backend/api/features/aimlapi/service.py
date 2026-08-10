@@ -18,6 +18,7 @@ from backend.api.features.aimlapi.config import (
     AGENT_NAME,
     attribution_headers,
     resolve_endpoints,
+    resolve_inference_base_url,
     resolve_partner_id,
     resolve_partner_name,
     resolve_requested_usd_limit_minor,
@@ -180,3 +181,23 @@ async def poll_authorization(
     if status in TERMINAL_FAILURE_STATUSES:
         return AuthorizationPollResult(status=status)
     return AuthorizationPollResult(status=status or "pending")
+
+
+async def validate_api_key(api_key: str) -> bool:
+    """Return whether ``api_key`` authenticates against AIMLAPI.
+
+    Sends an intentionally empty ``/chat/completions`` request: AIMLAPI checks
+    auth before validating the body, so a bad key returns 401 while a valid key
+    returns 400 (missing fields). No completion is generated, so the check is
+    free. Raises ``AimlapiAuthError`` if AIMLAPI can't be reached.
+    """
+    base = resolve_inference_base_url()
+    headers = {"Authorization": f"Bearer {api_key}", **attribution_headers()}
+    try:
+        async with httpx.AsyncClient(timeout=HTTP_TIMEOUT_SECONDS) as client:
+            response = await client.post(
+                f"{base}/chat/completions", headers=headers, json={}
+            )
+    except httpx.HTTPError as exc:
+        raise AimlapiAuthError("Unable to reach AIMLAPI to verify the key") from exc
+    return response.status_code != 401

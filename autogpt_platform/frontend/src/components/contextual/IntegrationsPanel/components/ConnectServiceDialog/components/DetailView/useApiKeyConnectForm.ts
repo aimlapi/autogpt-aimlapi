@@ -10,7 +10,10 @@ import {
   postV1CreateCredentials,
 } from "@/app/api/__generated__/endpoints/integrations/integrations";
 import { toast } from "@/components/molecules/Toast/use-toast";
-import { useAimlapiGetApiKey } from "@/hooks/useAimlapiGetApiKey";
+import {
+  useAimlapiGetApiKey,
+  validateAimlapiApiKey,
+} from "@/hooks/useAimlapiGetApiKey";
 
 import { apiKeyConnectSchema, type ApiKeyConnectFormValues } from "./schema";
 
@@ -44,6 +47,18 @@ export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args
   async function handleSubmit(values: ApiKeyConnectFormValues) {
     setIsPending(true);
     try {
+      if (provider === "aiml_api" && !(await validateAimlapiApiKey(values.apiKey))) {
+        form.setError("apiKey", {
+          message: "This aimlapi.com API key is invalid.",
+        });
+        toast({
+          title: "Invalid API key",
+          description: "This aimlapi.com API key is invalid.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // customMutator throws on non-2xx, so reaching this line means success.
       await postV1CreateCredentials(provider, {
         provider,

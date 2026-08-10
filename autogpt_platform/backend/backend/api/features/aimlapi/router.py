@@ -19,6 +19,7 @@ from backend.api.features.aimlapi.service import (
     AuthorizationRequest,
     poll_authorization,
     start_authorization,
+    validate_api_key,
 )
 
 router = APIRouter()
@@ -49,6 +50,27 @@ class AuthorizePollRequest(BaseModel):
 class AuthorizePollResponse(BaseModel):
     status: str
     api_key: str | None = None
+
+
+class ValidateKeyRequest(BaseModel):
+    api_key: str
+
+
+class ValidateKeyResponse(BaseModel):
+    valid: bool
+
+
+@router.post("/validate-key")
+async def validate_key(
+    body: ValidateKeyRequest,
+    user_id: Annotated[str, Security(get_user_id)],
+) -> ValidateKeyResponse:
+    """Report whether a manually-entered API key authenticates against AIMLAPI."""
+    try:
+        valid = await validate_api_key(body.api_key)
+    except AimlapiAuthError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+    return ValidateKeyResponse(valid=valid)
 
 
 @router.post("/authorize/start")
