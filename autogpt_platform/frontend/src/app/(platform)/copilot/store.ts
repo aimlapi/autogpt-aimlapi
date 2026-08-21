@@ -59,6 +59,10 @@ export type CopilotMode = "extended_thinking" | "fast";
 /** Per-request model tier. 'standard' = current default; 'advanced' = highest-capability. */
 export type CopilotLlmModel = "standard" | "advanced";
 
+export type CopilotLlmAuthSelection =
+  | { authProvider: "platform"; credentialId: null }
+  | { authProvider: "codex"; credentialId: string };
+
 /** Context panel tab. */
 export type ContextPanelTab = "progress" | "files";
 
@@ -123,6 +127,14 @@ interface CopilotUIState {
   /** Prompt extracted from URL hash (e.g. /copilot#prompt=...) for input prefill. */
   initialPrompt: string | null;
   setInitialPrompt: (prompt: string | null) => void;
+
+  /**
+   * Bumped every time the composer actually sends a message. Chain action
+   * cards draft into the input rather than sending themselves, so this is
+   * how they learn their drafted message went out.
+   */
+  sentMessageCount: number;
+  notifyMessageSent: () => void;
 
   /**
    * Expert ids whose latest thread was already adopted via a
@@ -197,6 +209,10 @@ interface CopilotUIState {
   copilotLlmModel: CopilotLlmModel;
   setCopilotLlmModel: (model: CopilotLlmModel) => void;
 
+  /** Authentication route locked into the next session when it is created. */
+  copilotLlmAuth: CopilotLlmAuthSelection;
+  setCopilotLlmAuth: (selection: CopilotLlmAuthSelection) => void;
+
   /** Developer dry-run mode: sessions created with dry_run=true. */
   isDryRun: boolean;
   setIsDryRun: (enabled: boolean) => void;
@@ -215,6 +231,10 @@ let _autoOpenUserClosed = false;
 export const useCopilotUIStore = create<CopilotUIState>((set, get) => ({
   initialPrompt: null,
   setInitialPrompt: (prompt) => set({ initialPrompt: prompt }),
+
+  sentMessageCount: 0,
+  notifyMessageSent: () =>
+    set((state) => ({ sentMessageCount: state.sentMessageCount + 1 })),
 
   adoptedExpertThreads: new Set<string>(),
   markExpertThreadAdopted: (expertId) =>
@@ -524,6 +544,11 @@ export const useCopilotUIStore = create<CopilotUIState>((set, get) => ({
     set({ copilotLlmModel: model });
   },
 
+  copilotLlmAuth: { authProvider: "platform", credentialId: null },
+  setCopilotLlmAuth: (selection) => {
+    set({ copilotLlmAuth: selection });
+  },
+
   isDryRun: isClient && storage.get(Key.COPILOT_DRY_RUN) === "true",
   setIsDryRun: (enabled) => {
     if (enabled) {
@@ -566,6 +591,7 @@ export const useCopilotUIStore = create<CopilotUIState>((set, get) => ({
       },
       copilotChatMode: "extended_thinking",
       copilotLlmModel: "standard",
+      copilotLlmAuth: { authProvider: "platform", credentialId: null },
       isDryRun: false,
     });
     if (isClient) {

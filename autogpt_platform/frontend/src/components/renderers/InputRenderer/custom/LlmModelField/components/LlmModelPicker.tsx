@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CaretDownIcon, StarIcon } from "@phosphor-icons/react";
 import {
   Popover,
   PopoverContent,
@@ -21,6 +20,8 @@ import { LlmIcon } from "./LlmIcon";
 import { LlmMenuHeader } from "./LlmMenuHeader";
 import { LlmMenuItem } from "./LlmMenuItem";
 import { LlmPriceTier } from "./LlmPriceTier";
+import { ArrowDown01Icon, StarIcon } from "@hugeicons/core-free-icons";
+import { Icon } from "@/components/atoms/Icon/Icon";
 
 type MenuView = "creator" | "model" | "provider";
 
@@ -30,6 +31,7 @@ const RECOMMENDED_GROUP = "Recommended";
 
 type Props = {
   models: LlmModelMetadata[];
+  selectedName?: string;
   selectedModel?: LlmModelMetadata;
   recommendedModel?: LlmModelMetadata;
   onSelect: (value: string) => void;
@@ -38,6 +40,7 @@ type Props = {
 
 export function LlmModelPicker({
   models,
+  selectedName,
   selectedModel,
   recommendedModel,
   onSelect,
@@ -128,10 +131,19 @@ export function LlmModelPicker({
     [onSelect],
   );
 
-  const triggerModel = selectedModel ?? recommendedModel ?? models[0];
-  const triggerTitle = triggerModel
-    ? getModelDisplayName(triggerModel)
-    : "Select model";
+  // A stored slug missing from the metadata map means the model was hidden
+  // or kill-switched after this node was configured. Show the truth (the
+  // raw stored slug) rather than silently displaying the recommended model
+  // while the stored one still executes.
+  const isUnavailableSelection = Boolean(selectedName) && !selectedModel;
+  const triggerModel = isUnavailableSelection
+    ? undefined
+    : (selectedModel ?? recommendedModel ?? models[0]);
+  const triggerTitle = isUnavailableSelection
+    ? `${selectedName} (unavailable)`
+    : triggerModel
+      ? getModelDisplayName(triggerModel)
+      : "Select model";
   const triggerCreator = triggerModel?.creator ?? "";
 
   return (
@@ -150,7 +162,7 @@ export function LlmModelPicker({
           <Text variant="body" className="ml-1 flex-1 text-zinc-900">
             {triggerTitle}
           </Text>
-          <CaretDownIcon className="h-3 w-3 text-zinc-900" weight="bold" />
+          <Icon icon={ArrowDown01Icon} className="h-3 w-3 text-zinc-900" />
         </button>
       </PopoverTrigger>
       <PopoverContent
@@ -164,9 +176,9 @@ export function LlmModelPicker({
               <LlmMenuItem
                 title={RECOMMENDED_GROUP}
                 icon={
-                  <StarIcon
+                  <Icon
+                    icon={StarIcon}
                     size={20}
-                    weight="fill"
                     className="text-amber-500"
                   />
                 }

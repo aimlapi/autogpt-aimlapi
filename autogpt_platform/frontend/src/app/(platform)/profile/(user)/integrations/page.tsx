@@ -17,10 +17,11 @@ import { providerIcons } from "@/components/renderers/InputRenderer/custom/Crede
 import { CredentialsProviderName } from "@/lib/autogpt-server-api";
 import { useAuth } from "@/lib/auth/hooks/useAuth";
 import { CredentialsProvidersContext } from "@/providers/agent-credentials/credentials-provider";
-import { KeyIcon } from "@phosphor-icons/react/dist/ssr";
 import { Trash2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { Key01Icon } from "@hugeicons/core-free-icons";
+import { Icon } from "@/components/atoms/Icon/Icon";
 
 export default function UserIntegrationsPage() {
   const { user, isUserLoading } = useAuth();
@@ -148,12 +149,13 @@ export default function UserIntegrationsPage() {
               ...credentials,
               provider: provider.provider,
               providerName: provider.providerName,
-              ProviderIcon: providerIcons[provider.provider] || KeyIcon,
+              providerIcon: providerIcons[provider.provider] || Key01Icon,
               TypeIcon: {
                 oauth2: IconUser,
                 api_key: IconKey,
                 user_password: IconKey,
                 host_scoped: IconKey,
+                device_code: IconUser,
               }[credentials.type],
             })),
         )
@@ -175,7 +177,7 @@ export default function UserIntegrationsPage() {
             <TableRow key={cred.id}>
               <TableCell>
                 <div className="flex items-center space-x-1.5">
-                  <cred.ProviderIcon className="h-4 w-4" />
+                  <Icon icon={cred.providerIcon} className="h-4 w-4" />
                   <strong>{cred.providerName}</strong>
                 </div>
               </TableCell>
@@ -191,6 +193,7 @@ export default function UserIntegrationsPage() {
                       api_key: "API key",
                       user_password: "Username & password",
                       host_scoped: "Host-scoped credentials",
+                      device_code: "Device auth credentials",
                     }[cred.type]
                   }{" "}
                   - <code>{cred.id}</code>

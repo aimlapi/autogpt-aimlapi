@@ -21,6 +21,8 @@ from backend.copilot.baseline.service import (
     _build_cached_system_message,
     _build_natural_finish_empty_fallback_events,
     _compress_session_messages,
+    _enqueue_graphiti_turn,
+    _fetch_graphiti_context,
     _fresh_anthropic_caching_headers,
     _fresh_ephemeral_cache_control,
     _is_anthropic_model,
@@ -29,8 +31,10 @@ from backend.copilot.baseline.service import (
     _natural_finish_empty_notice_text,
     _split_user_message_after_skills_block,
     _supports_prompt_cache_markers,
+    stream_chat_completion_baseline,
 )
-from backend.copilot.model import ChatMessage
+from backend.copilot.expert_context import ExpertSessionUnavailableError
+from backend.copilot.model import ChatMessage, ChatSession
 from backend.copilot.response_model import (
     StreamReasoningDelta,
     StreamReasoningEnd,
@@ -43,6 +47,93 @@ from backend.copilot.token_tracking import _extract_cache_creation_tokens
 from backend.copilot.transcript_builder import TranscriptBuilder
 from backend.util.prompt import CompressResult
 from backend.util.tool_call_loop import LLMLoopResponse, LLMToolCall, ToolCallResult
+
+
+@pytest.mark.asyncio
+async def test_expert_identity_failure_precedes_baseline_turn_mutation() -> None:
+    session = ChatSession.new("user-1", dry_run=False, expert_id="expert-1")
+    identity_mock = AsyncMock(
+        side_effect=ExpertSessionUnavailableError(
+            "The expert for this session no longer exists or is archived."
+        )
+    )
+
+    with (
+        patch(
+            "backend.copilot.baseline.service.build_expert_identity_suffix",
+            new=identity_mock,
+        ),
+        pytest.raises(ExpertSessionUnavailableError),
+    ):
+        async for _ in stream_chat_completion_baseline(
+            session_id=session.session_id,
+            message="private prompt",
+            user_id="user-1",
+            session=session,
+        ):
+            pass
+
+    identity_mock.assert_awaited_once_with(
+        "user-1", "expert-1", organization_id=None, team_id=None
+    )
+    assert session.messages == []
+
+
+@pytest.mark.asyncio
+async def test_fetch_graphiti_context_uses_expert_session_scope() -> None:
+    session = ChatSession.new(
+        "user-1",
+        dry_run=False,
+        expert_id="expert-1",
+    )
+    fetch_mock = AsyncMock(return_value="expert context")
+
+    with patch(
+        "backend.copilot.baseline.service.fetch_warm_context",
+        new=fetch_mock,
+    ):
+        context = await _fetch_graphiti_context(
+            "user-1",
+            session,
+            "first prompt",
+        )
+
+    assert context == "expert context"
+    fetch_mock.assert_awaited_once_with(
+        "user-1",
+        "first prompt",
+        expert_id="expert-1",
+    )
+
+
+@pytest.mark.asyncio
+async def test_enqueue_graphiti_turn_uses_expert_session_scope() -> None:
+    session = ChatSession.new(
+        "user-1",
+        dry_run=False,
+        expert_id="expert-1",
+    )
+    enqueue_mock = AsyncMock()
+
+    with patch(
+        "backend.copilot.baseline.service.enqueue_conversation_turn",
+        new=enqueue_mock,
+    ):
+        await _enqueue_graphiti_turn(
+            "user-1",
+            session,
+            "session-1",
+            "private prompt",
+            "private response",
+        )
+
+    enqueue_mock.assert_awaited_once_with(
+        "user-1",
+        "session-1",
+        "private prompt",
+        assistant_msg="private response",
+        expert_id="expert-1",
+    )
 
 
 class TestBaselineStreamState:
@@ -148,6 +239,43 @@ class TestBaselineConversationUpdater:
         assert messages[1]["role"] == "tool"
         assert messages[1]["tool_call_id"] == "tc_1"
         assert messages[1]["content"] == "Found result"
+
+    def test_stamps_model_and_routing_source_on_persisted_assistant(self):
+        """The persisted assistant ChatMessage (state.session_messages) must
+        carry the turn's model and routing_source so product-intelligence can
+        segment quality by model/layer — stamped from the stream state. Tool
+        rows stay unstamped (model is None)."""
+        messages: list = []
+        builder = self._make_transcript_builder()
+        state = _BaselineStreamState(
+            model="anthropic/claude-sonnet-4-6", routing_source="ld"
+        )
+        response = LLMLoopResponse(
+            response_text="searching",
+            tool_calls=[LLMToolCall(id="tc_1", name="search", arguments="{}")],
+            raw_response=None,
+            prompt_tokens=0,
+            completion_tokens=0,
+        )
+        tool_results = [
+            ToolCallResult(tool_call_id="tc_1", tool_name="search", content="ok"),
+        ]
+
+        _baseline_conversation_updater(
+            messages,
+            response,
+            tool_results=tool_results,
+            transcript_builder=builder,
+            model="anthropic/claude-sonnet-4-6",
+            state=state,
+        )
+
+        persisted = [m for m in state.session_messages if m.role == "assistant"]
+        assert len(persisted) == 1
+        assert persisted[0].model == "anthropic/claude-sonnet-4-6"
+        assert persisted[0].routing_source == "ld"
+        tool_rows = [m for m in state.session_messages if m.role == "tool"]
+        assert tool_rows and tool_rows[0].model is None
 
         # Transcript: user + assistant(tool_use) + user(tool_result)
         assert builder.entry_count == 3

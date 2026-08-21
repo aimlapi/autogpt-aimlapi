@@ -16,6 +16,8 @@ export interface ConnectableProvider {
   description?: string | null;
   supportedAuthTypes: AuthMethod[];
   recommended?: boolean;
+  authProviderByType?: Partial<Record<AuthMethod, string>>;
+  searchTerms?: string[];
 }
 
 const KNOWN_AUTH_METHODS: ReadonlySet<AuthMethod> = new Set(
@@ -33,18 +35,56 @@ export function toConnectableProviders(
   metadata: ProviderMetadata[],
 ): ConnectableProvider[] {
   const seen = new Set<string>();
-  const result: ConnectableProvider[] = [];
+  const byDisplayProvider = new Map<string, ConnectableProvider>();
   for (const item of metadata) {
     if (seen.has(item.name)) continue;
     seen.add(item.name);
-    result.push({
-      id: item.name,
-      name: formatProviderName(item.name),
+
+    const displayProvider = item.name === "codex" ? "openai" : item.name;
+    const authTypes = normalizeAuthTypes(item.supported_auth_types);
+    const existing = byDisplayProvider.get(displayProvider);
+    const provider = existing ?? {
+      id: displayProvider,
+      name: formatProviderName(displayProvider),
       description: item.description,
-      supportedAuthTypes: normalizeAuthTypes(item.supported_auth_types),
-      recommended: RECOMMENDED_PROVIDERS.has(item.name),
-    });
+      supportedAuthTypes: [],
+      // Spread rather than `recommended: false` so a non-recommended provider
+      // carries no extra key — the shape stays exactly what callers assert on.
+      ...(RECOMMENDED_PROVIDERS.has(displayProvider) ? { recommended: true } : {}),
+    };
+
+    for (const authType of authTypes) {
+      const alreadySupported = provider.supportedAuthTypes.includes(authType);
+      if (!alreadySupported) {
+        provider.supportedAuthTypes.push(authType);
+      }
+      if (item.name === displayProvider) {
+        delete provider.authProviderByType?.[authType];
+      } else if (!alreadySupported) {
+        provider.authProviderByType = {
+          ...provider.authProviderByType,
+          [authType]: item.name,
+        };
+      }
+    }
+    if (item.name !== displayProvider) {
+      provider.searchTerms = Array.from(
+        new Set([...(provider.searchTerms ?? []), item.name]),
+      );
+    }
+    if (item.name === displayProvider) {
+      provider.description = item.description;
+    }
+    byDisplayProvider.set(displayProvider, provider);
   }
+
+  const openai = byDisplayProvider.get("openai");
+  if (openai?.authProviderByType?.oauth2 === "codex") {
+    openai.description =
+      "OpenAI models via API key or your ChatGPT subscription";
+  }
+
+  const result = Array.from(byDisplayProvider.values());
   // Recommended providers first, then alphabetical.
   result.sort((a, b) => {
     if (a.recommended !== b.recommended) return a.recommended ? -1 : 1;
@@ -66,6 +106,7 @@ export function filterConnectableProviders(
   return providers.filter((p) => {
     if (normalize(p.name).includes(q)) return true;
     if (normalize(p.id).includes(q)) return true;
+    if (p.searchTerms?.some((term) => normalize(term).includes(q))) return true;
     if (p.description && normalize(p.description).includes(q)) return true;
     return false;
   });
