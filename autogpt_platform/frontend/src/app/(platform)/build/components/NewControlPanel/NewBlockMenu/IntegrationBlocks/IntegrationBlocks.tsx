@@ -1,11 +1,13 @@
 import { Button } from "@/components/__legacy__/ui/button";
-import React, { Fragment } from "react";
+import React, { Fragment, useMemo } from "react";
 import { IntegrationBlock } from "../IntergrationBlock";
 import { Skeleton } from "@/components/__legacy__/ui/skeleton";
 import { useIntegrationBlocks } from "./useIntegrationBlocks";
 import { ErrorCard } from "@/components/molecules/ErrorCard/ErrorCard";
 import { InfiniteScroll } from "@/components/contextual/InfiniteScroll/InfiniteScroll";
 import { useBlockMenuStore } from "../../../../stores/blockMenuStore";
+import { beautifyString } from "@/lib/utils";
+import { RECOMMENDED_PROVIDERS } from "../Integration";
 
 export const IntegrationBlocks = () => {
   const { integration, setIntegration } = useBlockMenuStore();
@@ -20,6 +22,18 @@ export const IntegrationBlocks = () => {
     error,
     refetch,
   } = useIntegrationBlocks();
+
+  // Stagehand blocks reach the aimlapi.com list only through the shared LLM
+  // credential (their models are OpenAI/Anthropic-only), so keep them after the
+  // model blocks that actually run on the aimlapi.com key.
+  const orderedBlocks = useMemo(() => {
+    if (integration !== "aiml_api") return allBlocks;
+    const stagehandRank = (name?: string) =>
+      name?.toLowerCase().startsWith("stagehand") ? 1 : 0;
+    return [...allBlocks].sort(
+      (a, b) => stagehandRank(a.name) - stagehandRank(b.name),
+    );
+  }, [allBlocks, integration]);
 
   if (blocksLoading) {
     return (
@@ -78,7 +92,9 @@ export const IntegrationBlocks = () => {
               /
             </p>
             <p className="font-sans text-sm font-medium leading-[1.375rem] text-zinc-800">
-              {integration}
+              {integration && RECOMMENDED_PROVIDERS[integration]
+                ? RECOMMENDED_PROVIDERS[integration]
+                : beautifyString(integration ?? "")}
             </p>
           </div>
           <span className="flex h-[1.375rem] w-[1.6875rem] items-center justify-center rounded-[1.25rem] bg-[#f0f0f0] p-1.5 font-sans text-sm leading-[1.375rem] text-zinc-500 group-disabled:text-zinc-400">
@@ -86,7 +102,7 @@ export const IntegrationBlocks = () => {
           </span>
         </div>
         <div className="space-y-3">
-          {allBlocks.map((block) => (
+          {orderedBlocks.map((block) => (
             <IntegrationBlock
               key={block.id}
               title={block.name}

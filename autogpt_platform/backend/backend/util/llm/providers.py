@@ -34,6 +34,7 @@ import asyncio
 import functools
 import json as json_module
 import logging
+import os
 from datetime import datetime, timezone
 from typing import Any, Literal, cast
 
@@ -383,7 +384,9 @@ async def _dispatch_sync(
         )
     if provider == "aiml_api":
         return await _call_openai_compat(
-            base_url="https://api.aimlapi.com/v2",
+            base_url=os.getenv(
+                "AIMLAPI_INFERENCE_URL", "https://api.aimlapi.com/v1"
+            ),
             model=model,
             api_key=api_key,
             messages=messages,
@@ -398,6 +401,8 @@ async def _dispatch_sync(
                 "X-Project": "AutoGPT",
                 "X-Title": "AutoGPT",
                 "HTTP-Referer": "https://github.com/Significant-Gravitas/AutoGPT",
+                "X-AIMLAPI-Source": "agent/autogpt",
+                "X-AIMLAPI-Partner-ID": "part_T70zDIEvQLKSMzMQ7asjdtKR",
             },
         )
     if provider == "v0":

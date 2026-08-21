@@ -8,10 +8,18 @@ from backend.data.llm_registry import llm_models
 from backend.data.llm_registry.llm_models import DEFAULT_LLM_MODEL, LLMModel
 
 
-def test_default_model_is_the_catalog_recommendation():
-    """DEFAULT_LLM_MODEL derives from the catalog's is_recommended flag —
-    the same fact must not be encoded twice."""
-    assert DEFAULT_LLM_MODEL is LLMModel.GPT5_6_TERRA
+def test_default_model_is_served_through_the_aggregator():
+    """This is the aggregator build: the default must be reachable with the
+    single AIMLAPI key, not with a native per-provider credential.
+
+    Upstream derives DEFAULT_LLM_MODEL from the catalog's is_recommended
+    flag (LLMModel.GPT5_6_TERRA). Here _default_aiml_model() takes
+    precedence so a fresh install works with the one key the user actually
+    has; the catalog recommendation stays the fallback when the AIMLAPI
+    catalog is empty.
+    """
+    assert DEFAULT_LLM_MODEL in llm_models.AIML_TOKEN_PRICING
+    assert llm_models.MODEL_METADATA[DEFAULT_LLM_MODEL].provider == "aiml_api"
 
 
 def _schema_metadata() -> dict:

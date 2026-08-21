@@ -14,6 +14,7 @@ from collections.abc import Mapping
 from enum import Enum, EnumMeta
 from typing import Literal, NamedTuple
 
+from backend.data.llm_registry.aiml_catalog import load_aiml_catalog, member_name
 from backend.data.llm_registry.catalog import get_catalog
 from backend.data.llm_registry.catalog_model import CatalogPayload
 
@@ -314,6 +315,78 @@ _OPENROUTER_ALIASES: Mapping[str, LLMModel] = {
 }
 
 
+# ---------------------------------------------------------------------------
+# AIMLAPI aggregator models
+# ---------------------------------------------------------------------------
+#
+# ``catalog.py`` appends the AIMLAPI catalog to the payload, but block schemas
+# serialize ``LLMModel`` members, and ``_build_model_metadata()`` joins catalog
+# models to members BY SLUG — so an injected catalog entry is invisible until a
+# member carrying that slug exists. These two steps are the same registration
+# split across the enum and the catalog; keep them in sync.
+
+# Per-token USD list prices for the injected models, keyed by member.
+# ``block_cost_config`` derives the TOKEN_COST rates that actually bill from
+# this; the catalog's flat ``run_credits`` is only the completeness-guard tier.
+AIML_TOKEN_PRICING: dict["LLMModel", tuple[float, float]] = {}
+# Members the aggregator flags as "hottest" — the picker sorts these first.
+AIML_HOTTEST_MODELS: set["LLMModel"] = set()
+
+
+def _add_llm_model_member(name: str, value: str) -> "LLMModel":
+    """Add a member to the already-created ``LLMModel`` enum.
+
+    ``Enum`` has no public extension API, so this writes the same three
+    structures ``EnumMeta`` populates. Done once at import, before anything
+    reads the enum.
+    """
+    # ``LLMModel`` mixes in ``str``, so the member must be constructed through
+    # ``str.__new__`` — ``object.__new__`` refuses a variable-length subclass.
+    member = str.__new__(LLMModel, value)
+    member._name_ = name
+    member._value_ = value
+    LLMModel._member_map_[name] = member
+    LLMModel._value2member_map_[value] = member
+    LLMModel._member_names_.append(name)
+    type.__setattr__(LLMModel, name, member)
+    return member
+
+
+def _register_aiml_models() -> None:
+    pricing = {model.id: model for model in load_aiml_catalog()}
+    for model in get_catalog().models:
+        if model.provider != "aiml_api":
+            continue
+        # Skip slugs that already resolve — directly or through
+        # ``_missing_``/``_OPENROUTER_ALIASES``. An aggregator entry must never
+        # shadow a native model and reroute existing graphs through AIMLAPI.
+        try:
+            LLMModel(model.slug)
+            continue
+        except ValueError:
+            pass
+
+        name = unique = member_name(model.slug)
+        suffix = 2
+        while unique in LLMModel._member_map_:
+            unique = f"{name}_{suffix}"
+            suffix += 1
+        member = _add_llm_model_member(unique, model.slug)
+
+        source = pricing.get(model.slug)
+        if source is None:
+            continue
+        AIML_TOKEN_PRICING[member] = (
+            source.input_usd_per_1m or 0.0,
+            source.output_usd_per_1m or 0.0,
+        )
+        if source.is_hottest:
+            AIML_HOTTEST_MODELS.add(member)
+
+
+_register_aiml_models()
+
+
 def _build_model_metadata() -> dict["LLMModel", ModelMetadata]:
     """Project catalog facts into the block-facing metadata shape.
 
@@ -406,7 +479,28 @@ def _default_model_from_catalog() -> LLMModel:
     raise ValueError("catalog declares no enabled block-selectable models")
 
 
-DEFAULT_LLM_MODEL = _default_model_from_catalog()
+def _default_aiml_model() -> "LLMModel":
+    """Default to an AIMLAPI model — this build is the aggregator build.
+
+    Prefers a flagship, falls back to the first injected AIMLAPI model (the
+    catalog is hottest-first), and finally to the catalog's own recommended
+    model so a missing or empty AIMLAPI catalog can never break import.
+    """
+    for candidate in ("openai/gpt-5.6-terra-pro", "anthropic/claude-sonnet-5"):
+        try:
+            member = LLMModel(candidate)
+        except ValueError:
+            continue
+        if member in AIML_TOKEN_PRICING:
+            return member
+    for member in AIML_HOTTEST_MODELS:
+        return member
+    for member in AIML_TOKEN_PRICING:
+        return member
+    return _default_model_from_catalog()
+
+
+DEFAULT_LLM_MODEL = _default_aiml_model()
 
 # Family-aware mapping for legacy model values that have been retired from the
 # `LLMModel` enum. Used by both the Prisma migration that rewrites stored graph

@@ -1,0 +1,3366 @@
+{
+ "source": "GET https://api.aimlapi.com/v1/models?include=capabilities,modalities,pricing (type=openai/chat-completions, output text)",
+ "count": 336,
+ "models": [
+  {
+   "id": "openai/gpt-5.6-luna-pro",
+   "name": "GPT-5.6 Luna Pro",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": true
+  },
+  {
+   "id": "openai/gpt-5.6-terra-pro",
+   "name": "GPT-5.6 Terra Pro",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": true
+  },
+  {
+   "id": "openai/gpt-5.6-sol-pro",
+   "name": "GPT-5.6 Sol Pro",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 78.0,
+   "is_hottest": true
+  },
+  {
+   "id": "anthropic/claude-fable-5",
+   "name": "Claude Fable 5",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 65.0,
+   "is_hottest": true
+  },
+  {
+   "id": "anthropic/claude-sonnet-5",
+   "name": "Claude Sonnet 5",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 13.0,
+   "is_hottest": true
+  },
+  {
+   "id": "anthropic/claude-opus-5",
+   "name": "Claude Opus 5",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": true
+  },
+  {
+   "id": "deepseek/deepseek-v4-pro",
+   "name": "DeepSeek V4 Pro",
+   "developer": "DeepSeek AI",
+   "context_length": 1000000,
+   "output_max": 384000,
+   "input_usd_1m": 0.5655,
+   "output_usd_1m": 1.131,
+   "is_hottest": true
+  },
+  {
+   "id": "google/gemini-3.6-flash",
+   "name": "Gemini 3.6 Flash",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 9.75,
+   "is_hottest": true
+  },
+  {
+   "id": "google/gemini-3-6-flash",
+   "name": "Gemini 3.6 Flash",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 9.75,
+   "is_hottest": true
+  },
+  {
+   "id": "zhipu/glm-5.2",
+   "name": "GLM 5.2",
+   "developer": "Zhipu AI",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 5.72,
+   "is_hottest": true
+  },
+  {
+   "id": "zhipu/glm-5-2",
+   "name": "GLM 5.2",
+   "developer": "Zhipu AI",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 5.72,
+   "is_hottest": true
+  },
+  {
+   "id": "alibaba/glm-5.2",
+   "name": "GLM 5.2",
+   "developer": "Zhipu AI",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 5.72,
+   "is_hottest": true
+  },
+  {
+   "id": "alibaba/qwen3.7-max",
+   "name": "Qwen3.7 Max",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": true
+  },
+  {
+   "id": "minimax/minimax-m3",
+   "name": "MiniMax M3",
+   "developer": "Minimax AI",
+   "context_length": 524288,
+   "output_max": 524288,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": true
+  },
+  {
+   "id": "moonshot/kimi-k3",
+   "name": "Kimi K3",
+   "developer": "Moonshot",
+   "context_length": 1048576,
+   "output_max": null,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": true
+  },
+  {
+   "id": "x-ai/grok-4-5",
+   "name": "Grok 4.5",
+   "developer": "X AI",
+   "context_length": 500000,
+   "output_max": null,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": true
+  },
+  {
+   "id": "openai/gpt-3.5-turbo",
+   "name": "GPT-3.5 Turbo",
+   "developer": "Open AI",
+   "context_length": 16000,
+   "output_max": null,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-3.5-turbo-0125",
+   "name": "GPT-3.5 Turbo",
+   "developer": "Open AI",
+   "context_length": 16000,
+   "output_max": null,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-3.5-turbo-1106",
+   "name": "GPT-3.5 Turbo",
+   "developer": "Open AI",
+   "context_length": 16000,
+   "output_max": null,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4",
+   "name": "GPT-4",
+   "developer": "Open AI",
+   "context_length": 8000,
+   "output_max": null,
+   "input_usd_1m": 39.0,
+   "output_usd_1m": 78.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1-mini",
+   "name": "GPT-4.1 Mini",
+   "developer": "Open AI",
+   "context_length": 1000000,
+   "output_max": null,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.08,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1-mini-2025-04-14",
+   "name": "GPT-4.1 Mini",
+   "developer": "Open AI",
+   "context_length": 1000000,
+   "output_max": null,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.08,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1-nano",
+   "name": "GPT-4.1 Nano",
+   "developer": "Open AI",
+   "context_length": 1000000,
+   "output_max": null,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1-nano-2025-04-14",
+   "name": "GPT-4.1 Nano",
+   "developer": "Open AI",
+   "context_length": 1000000,
+   "output_max": null,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1",
+   "name": "GPT-4.1",
+   "developer": "Open AI",
+   "context_length": 1047576,
+   "output_max": 32768,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 10.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4.1-2025-04-14",
+   "name": "GPT-4.1",
+   "developer": "Open AI",
+   "context_length": 1047576,
+   "output_max": 32768,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 10.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4-turbo",
+   "name": "GPT-4 Turbo",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4-turbo-2024-04-09",
+   "name": "GPT-4 Turbo",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o-mini",
+   "name": "GPT-4o Mini",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o-mini-2024-07-18",
+   "name": "GPT-4o Mini",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o",
+   "name": "GPT-4o",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o-2024-08-06",
+   "name": "GPT-4o",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o-2024-11-20",
+   "name": "GPT-4o",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4o-2024-05-13",
+   "name": "GPT-4o",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o1",
+   "name": "o1 Preview",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 78.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o1-2024-12-17",
+   "name": "o1 Preview",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 78.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o3-mini",
+   "name": "o3 Mini",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": null,
+   "input_usd_1m": 1.43,
+   "output_usd_1m": 5.72,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o3-mini-2025-01-31",
+   "name": "o3 Mini",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": null,
+   "input_usd_1m": 1.43,
+   "output_usd_1m": 5.72,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o4-mini-2025-04-16",
+   "name": "o4 Mini",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": 100000,
+   "input_usd_1m": 1.43,
+   "output_usd_1m": 5.72,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-nano-2025-08-07",
+   "name": "GPT-5 Nano",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.1-2025-11-13",
+   "name": "GPT-5.1",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.2-2025-12-11",
+   "name": "GPT-5.2",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.2-chat-latest",
+   "name": "GPT-5.2 Chat Latest",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16000,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.4-2026-03-05",
+   "name": "GPT-5.4",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.5-2026-04-23",
+   "name": "GPT-5.5",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.6-sol",
+   "name": "GPT-5.6 Sol",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.6-terra",
+   "name": "GPT-5.6 Terra",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.6-luna",
+   "name": "GPT-5.6 Luna",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-audio",
+   "name": "Chat GPT audio",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-audio-2025-08-28",
+   "name": "Chat GPT audio",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-audio-mini",
+   "name": "Chat GPT mini audio",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-audio-mini-2025-10-06",
+   "name": "Chat GPT mini audio",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o3-2025-04-16",
+   "name": "o3",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": 100000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 10.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-2025-08-07",
+   "name": "GPT-5",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-mini-2025-08-07",
+   "name": "GPT-5 Mini",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-oss-120b",
+   "name": "GPT OSS 120B",
+   "developer": "Open AI",
+   "context_length": 131000,
+   "output_max": 131072,
+   "input_usd_1m": 0.455,
+   "output_usd_1m": 1.235,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-oss-20b",
+   "name": "GPT OSS 20B",
+   "developer": "Open AI",
+   "context_length": 131000,
+   "output_max": 131072,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5",
+   "name": "GPT-5",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 1.7875,
+   "output_usd_1m": 14.3,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-mini",
+   "name": "GPT-5 Mini",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.3575,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-nano",
+   "name": "GPT-5 Nano",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.0715,
+   "output_usd_1m": 0.572,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-chat-latest",
+   "name": "GPT Chat Latest",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.5-pro",
+   "name": "GPT-5.5 Pro",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 39.0,
+   "output_usd_1m": 234.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.4-image-2",
+   "name": "GPT-5.4 Image 2",
+   "developer": "Open AI",
+   "context_length": 272000,
+   "output_max": 128000,
+   "input_usd_1m": 10.4,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.4-nano",
+   "name": "GPT-5.4 Nano",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.625,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.4-mini",
+   "name": "GPT-5.4 Mini",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 11.7,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.4-pro",
+   "name": "GPT-5.4 Pro",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 39.0,
+   "output_usd_1m": 234.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.3-chat",
+   "name": "GPT-5.3 Chat",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.3-codex",
+   "name": "GPT-5.3 Codex",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 4.55,
+   "output_usd_1m": 36.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.2-codex",
+   "name": "GPT-5.2 Codex",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 4.55,
+   "output_usd_1m": 36.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.2-chat",
+   "name": "GPT-5.2 Chat",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.2-pro",
+   "name": "GPT-5.2 Pro",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 27.3,
+   "output_usd_1m": 218.4,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.1-codex-max",
+   "name": "GPT-5.1-Codex-Max",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 26.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.1-codex",
+   "name": "GPT-5.1 Codex",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 26.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5.1-codex-mini",
+   "name": "GPT-5.1 Codex Mini",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-oss-safeguard-20b",
+   "name": "gpt-oss-safeguard-20b",
+   "developer": "Open AI",
+   "context_length": 131072,
+   "output_max": 65536,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-image-mini",
+   "name": "GPT-5 Image Mini",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-image",
+   "name": "GPT-5 Image",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-pro",
+   "name": "GPT-5 Pro",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 272000,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 156.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o3-pro",
+   "name": "o3 Pro",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": null,
+   "input_usd_1m": 26.0,
+   "output_usd_1m": 104.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/o1-pro",
+   "name": "o1-pro",
+   "developer": "Open AI",
+   "context_length": 200000,
+   "output_max": 100000,
+   "input_usd_1m": 195.0,
+   "output_usd_1m": 780.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-4-turbo-preview",
+   "name": "GPT-4 Turbo Preview",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 4096,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-latest",
+   "name": "GPT Latest",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-mini-latest",
+   "name": "GPT Mini Latest",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 0.975,
+   "output_usd_1m": 5.85,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-1",
+   "name": "GPT-5.1",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-2",
+   "name": "GPT-5.2",
+   "developer": "Open AI",
+   "context_length": 400000,
+   "output_max": 128000,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-2-chat-latest",
+   "name": "GPT-5.2 Chat Latest",
+   "developer": "Open AI",
+   "context_length": 128000,
+   "output_max": 16000,
+   "input_usd_1m": 2.275,
+   "output_usd_1m": 18.2,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-4",
+   "name": "GPT-5.4",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "openai/gpt-5-5",
+   "name": "GPT-5.5",
+   "developer": "Open AI",
+   "context_length": 1050000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4-1-20250805",
+   "name": "Claude 4.1 Opus",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 32000,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 97.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-4-5-20250929",
+   "name": "Claude 4.5 Sonnet",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-haiku-4-5-20251001",
+   "name": "Claude 4.5 Haiku",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 6.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4-5-20251101",
+   "name": "Claude 4.5 Opus",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4-6",
+   "name": "Claude 4.6 Opus",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-4-6",
+   "name": "Claude 4.6 Sonnet",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4-7",
+   "name": "Claude 4.7 Opus",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4-8",
+   "name": "Claude 4.8 Opus",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.8-fast",
+   "name": "Claude Opus 4.8 (Fast)",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 65.0,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.8",
+   "name": "Claude 4.8 Opus",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 7.15,
+   "output_usd_1m": 35.75,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.7-fast",
+   "name": "Claude Opus 4.7 (Fast)",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 39.0,
+   "output_usd_1m": 195.0,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.7",
+   "name": "Claude 4.7 Opus",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 7.15,
+   "output_usd_1m": 35.75,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.6",
+   "name": "Claude 4.6 Sonnet",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 4.29,
+   "output_usd_1m": 21.45,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.5",
+   "name": "Claude 4.5 Opus",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 7.15,
+   "output_usd_1m": 35.75,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-haiku-4.5",
+   "name": "Claude 4.5 Haiku",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 1.43,
+   "output_usd_1m": 7.15,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-4.5",
+   "name": "Claude 4.5 Sonnet",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 4.29,
+   "output_usd_1m": 21.45,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4.1",
+   "name": "Claude 4.1 Opus",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 32000,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 97.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-4",
+   "name": "Claude Opus 4",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 32000,
+   "input_usd_1m": 19.5,
+   "output_usd_1m": 97.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-4",
+   "name": "Claude Sonnet 4",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 64000,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-3-haiku",
+   "name": "Claude 3 Haiku",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 4096,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.625,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-fable-latest",
+   "name": "Claude Fable Latest",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 13.0,
+   "output_usd_1m": 65.0,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-haiku-latest",
+   "name": "Claude Haiku Latest",
+   "developer": "Anthropic",
+   "context_length": 200000,
+   "output_max": 64000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 6.5,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-sonnet-latest",
+   "name": "Claude Sonnet Latest",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "anthropic/claude-opus-latest",
+   "name": "Claude Opus Latest",
+   "developer": "Anthropic",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 32.5,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/seed-1-8",
+   "name": "Seed 1.8",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 224000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/seed-2-0-pro",
+   "name": "Dola-Seed 2.0 Pro",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/seed-2-0-lite",
+   "name": "Dola-Seed 2.0 Lite",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/seed-2-0-mini",
+   "name": "Dola-Seed 2.0 Mini",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/seed-2-0-code-preview",
+   "name": "Dola-Seed 2.0 Code",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/dola-seed-2-0-pro",
+   "name": "Dola-Seed 2.0 Pro",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/dola-seed-2-0-lite",
+   "name": "Dola-Seed 2.0 Lite",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/dola-seed-2-0-mini",
+   "name": "Dola-Seed 2.0 Mini",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance/dola-seed-2-0-code",
+   "name": "Dola-Seed 2.0 Code",
+   "developer": "ByteDance",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-reasoner",
+   "name": "DeepSeek R1",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 127000,
+   "input_usd_1m": 0.364,
+   "output_usd_1m": 0.546,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-chat",
+   "name": "DeepSeek V3",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 124000,
+   "input_usd_1m": 0.364,
+   "output_usd_1m": 0.546,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-v4-flash",
+   "name": "DeepSeek V4 Flash",
+   "developer": "DeepSeek AI",
+   "context_length": 1000000,
+   "output_max": 384000,
+   "input_usd_1m": 0.182,
+   "output_usd_1m": 0.364,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-chat-v3.1",
+   "name": "DeepSeek V3.1",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 8000,
+   "input_usd_1m": 0.845,
+   "output_usd_1m": 2.21,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-non-reasoner-v3.1-terminus",
+   "name": "DeepSeek V3.1",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 8000,
+   "input_usd_1m": 0.351,
+   "output_usd_1m": 1.235,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-reasoner-v3.1-terminus",
+   "name": "DeepSeek V3.1",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 8000,
+   "input_usd_1m": 0.351,
+   "output_usd_1m": 1.235,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-r1",
+   "name": "DeepSeek Reasoner V3.1",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 64000,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 2.795,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-non-thinking-v3.2-exp",
+   "name": "DeepSeek V3.2 Exp",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 64000,
+   "input_usd_1m": 0.351,
+   "output_usd_1m": 0.533,
+   "is_hottest": false
+  },
+  {
+   "id": "deepseek/deepseek-thinking-v3.2-exp",
+   "name": "DeepSeek V3.2 Exp",
+   "developer": "DeepSeek AI",
+   "context_length": 128000,
+   "output_max": 64000,
+   "input_usd_1m": 0.351,
+   "output_usd_1m": 0.533,
+   "is_hottest": false
+  },
+  {
+   "id": "meituan/longcat-2.0",
+   "name": "LongCat-2.0",
+   "developer": "Meituan",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 0.975,
+   "output_usd_1m": 3.835,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-flash",
+   "name": "Gemini 2.5 Flash",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-flash-preview",
+   "name": "Gemini 3 Flash Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.5-flash",
+   "name": "Gemini 3.5 Flash",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-flash-lite",
+   "name": "Gemini 2.5 Flash Lite Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 1048576,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite",
+   "name": "Gemini 3.1 Flash Lite",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.5-flash-lite",
+   "name": "Gemini 3.5 Flash Lite",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-pro",
+   "name": "Gemini 2.5 Pro",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview",
+   "name": "Gemini 3.1 Pro Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-4-26b-a4b-it-maas",
+   "name": "Gemma 4 26B A4B IT",
+   "developer": "Google",
+   "context_length": 262144,
+   "output_max": 128000,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-3n-e4b-it",
+   "name": "Gemma 3n 4B",
+   "developer": "Google",
+   "context_length": 8192,
+   "output_max": 2048,
+   "input_usd_1m": 0.026,
+   "output_usd_1m": 0.052,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-3-4b-it",
+   "name": "Gemma 3 4B",
+   "developer": "Google",
+   "context_length": 131000,
+   "output_max": 32768,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.13,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-3-12b-it",
+   "name": "Gemma 3 12B",
+   "developer": "Google",
+   "context_length": 131000,
+   "output_max": 96000,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.195,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-3-27b-it",
+   "name": "Gemma 3 27B",
+   "developer": "Google",
+   "context_length": 128000,
+   "output_max": 131072,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.598,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-4-31b-it",
+   "name": "Gemma 4 31B Instruct",
+   "developer": "Google",
+   "context_length": 256000,
+   "output_max": 262144,
+   "input_usd_1m": 1.287,
+   "output_usd_1m": 1.937,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-4-26b-a4b-it",
+   "name": "Gemma 4 26B A4B IT",
+   "developer": "Google",
+   "context_length": 262144,
+   "output_max": 128000,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-image",
+   "name": "Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+   "developer": "Google",
+   "context_length": 65536,
+   "output_max": 66000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-flash-image",
+   "name": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "developer": "Google",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-pro-image",
+   "name": "Nano Banana Pro (Gemini 3 Pro Image)",
+   "developer": "Google",
+   "context_length": 65536,
+   "output_max": 32768,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-flash-lite-preview",
+   "name": "Gemini 3.1 Flash Lite Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-flash-image-preview",
+   "name": "Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+   "developer": "Google",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3.1-pro-preview-customtools",
+   "name": "Gemini 3.1 Pro Preview Custom Tools",
+   "developer": "Google",
+   "context_length": 1048756,
+   "output_max": 65536,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-pro-image-preview",
+   "name": "Nano Banana Pro (Gemini 3 Pro Image Preview)",
+   "developer": "Google",
+   "context_length": 65536,
+   "output_max": 32768,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-flash-image",
+   "name": "Nano Banana (Gemini 2.5 Flash Image)",
+   "developer": "Google",
+   "context_length": 32768,
+   "output_max": 32768,
+   "input_usd_1m": 0.702,
+   "output_usd_1m": 5.85,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview",
+   "name": "Gemini 2.5 Pro Preview 06-05",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-pro-preview-05-06",
+   "name": "Gemini 2.5 Pro Preview 05-06",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65535,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemma-2-27b-it",
+   "name": "Gemma 2 27B",
+   "developer": "Google",
+   "context_length": 8192,
+   "output_max": 2048,
+   "input_usd_1m": 0.845,
+   "output_usd_1m": 0.845,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-2.5-flash-lite-preview",
+   "name": "Gemini 2.5 Flash Lite Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 1048576,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-1-flash-lite-preview",
+   "name": "Gemini 3.1 Flash Lite Preview",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-5-flash",
+   "name": "Gemini 3.5 Flash",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-5-flash-lite",
+   "name": "Gemini 3.5 Flash Lite",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-3-1-flash-lite",
+   "name": "Gemini 3.1 Flash Lite",
+   "developer": "Google",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-pro-latest",
+   "name": "Gemini Pro Latest",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 15.6,
+   "is_hottest": false
+  },
+  {
+   "id": "google/gemini-flash-latest",
+   "name": "Gemini Flash Latest",
+   "developer": "Google",
+   "context_length": 1048576,
+   "output_max": 65536,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 11.7,
+   "is_hottest": false
+  },
+  {
+   "id": "meta/muse-spark-1.1",
+   "name": "Muse Spark 1.1",
+   "developer": "Meta",
+   "context_length": 1048576,
+   "output_max": null,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 5.525,
+   "is_hottest": false
+  },
+  {
+   "id": "meta/muse-spark-1.2",
+   "name": "Muse Spark 1.2",
+   "developer": "Meta",
+   "context_length": 1048576,
+   "output_max": null,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 5.525,
+   "is_hottest": false
+  },
+  {
+   "id": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+   "name": "Llama 3.3 70B Instruct Turbo",
+   "developer": "Meta",
+   "context_length": 128000,
+   "output_max": 127000,
+   "input_usd_1m": 1.144,
+   "output_usd_1m": 1.144,
+   "is_hottest": false
+  },
+  {
+   "id": "meta-llama/llama-3.3-70b-versatile",
+   "name": "Llama 3.3 70B Versatile",
+   "developer": "Meta",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 0.767,
+   "output_usd_1m": 1.027,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-nemo",
+   "name": "Mistral NeMo",
+   "developer": "Mistral AI",
+   "context_length": 128000,
+   "output_max": 131072,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.221,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-medium-3-5",
+   "name": "Medium 3.5",
+   "developer": "Mistral AI",
+   "context_length": 262144,
+   "output_max": null,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 9.75,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-small-2603",
+   "name": "Small 4",
+   "developer": "Mistral AI",
+   "context_length": 262144,
+   "output_max": null,
+   "input_usd_1m": 0.24375,
+   "output_usd_1m": 0.975,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/ministral-14b-2512",
+   "name": "Ministral 3 14B 2512",
+   "developer": "Mistral AI",
+   "context_length": 262144,
+   "output_max": null,
+   "input_usd_1m": 0.455,
+   "output_usd_1m": 0.455,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/ministral-8b-2512",
+   "name": "Ministral 3 8B 2512",
+   "developer": "Mistral AI",
+   "context_length": 262144,
+   "output_max": null,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/ministral-3b-2512",
+   "name": "Ministral 3 3B 2512",
+   "developer": "Mistral AI",
+   "context_length": 131072,
+   "output_max": null,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.195,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-large-2512",
+   "name": "Large 3 2512",
+   "developer": "Mistral AI",
+   "context_length": 262144,
+   "output_max": null,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/voxtral-small-24b-2507",
+   "name": "Voxtral Small 24B 2507",
+   "developer": "Mistral AI",
+   "context_length": 32000,
+   "output_max": null,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-medium-3.1",
+   "name": "Medium 3.1",
+   "developer": "Mistral AI",
+   "context_length": 131072,
+   "output_max": null,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/codestral-2508",
+   "name": "Codestral 2508",
+   "developer": "Mistral AI",
+   "context_length": 256000,
+   "output_max": null,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.17,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-small-3.2-24b-instruct",
+   "name": "Small 3.2 24B",
+   "developer": "Mistral AI",
+   "context_length": 128000,
+   "output_max": 16384,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.26,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-medium-3",
+   "name": "Medium 3",
+   "developer": "Mistral AI",
+   "context_length": 131072,
+   "output_max": null,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-small-3.1-24b-instruct",
+   "name": "Small 3.1 24B",
+   "developer": "Mistral AI",
+   "context_length": 128000,
+   "output_max": 128000,
+   "input_usd_1m": 0.4563,
+   "output_usd_1m": 0.7215,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-saba",
+   "name": "Saba",
+   "developer": "Mistral AI",
+   "context_length": 32768,
+   "output_max": null,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-small-24b-instruct-2501",
+   "name": "Small 3",
+   "developer": "Mistral AI",
+   "context_length": 32768,
+   "output_max": 16384,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.104,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-large-2407",
+   "name": "Large 2407",
+   "developer": "Mistral AI",
+   "context_length": 131072,
+   "output_max": null,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mixtral-8x22b-instruct",
+   "name": "Mixtral 8x22B Instruct",
+   "developer": "Mistral AI",
+   "context_length": 65536,
+   "output_max": null,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "mistralai/mistral-large",
+   "name": "Large",
+   "developer": "Mistral AI",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-5.1",
+   "name": "GLM 5.1",
+   "developer": "Zhipu AI",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 5.72,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-5-1",
+   "name": "GLM 5.1",
+   "developer": "Zhipu AI",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 5.72,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-5",
+   "name": "GLM 5",
+   "developer": "Zhipu AI",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 4.16,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-4.7",
+   "name": "GLM 4.7",
+   "developer": "Zhipu AI",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-4.6",
+   "name": "GLM 4.6",
+   "developer": "Zhipu AI",
+   "context_length": 200000,
+   "output_max": 128000,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-4.5",
+   "name": "GLM 4.5",
+   "developer": "Zhipu AI",
+   "context_length": 128000,
+   "output_max": 98000,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-4.5-air",
+   "name": "GLM 4.5 Air",
+   "developer": "Zhipu AI",
+   "context_length": 128000,
+   "output_max": 98000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.43,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/glm-5.2-fast-preview",
+   "name": "GLM 5.2 Fast Preview",
+   "developer": "Zhipu AI",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 4.55,
+   "output_usd_1m": 14.3,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen-max",
+   "name": "Qwen Max",
+   "developer": "Alibaba Cloud",
+   "context_length": 32000,
+   "output_max": 8192,
+   "input_usd_1m": 2.08,
+   "output_usd_1m": 8.32,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen-plus",
+   "name": "Qwen Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 131000,
+   "output_max": 16384,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen-turbo",
+   "name": "Qwen Turbo",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 16384,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.26,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-32b",
+   "name": "Qwen3 32B",
+   "developer": "Alibaba Cloud",
+   "context_length": 131000,
+   "output_max": 16384,
+   "input_usd_1m": 0.208,
+   "output_usd_1m": 0.832,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-235b-a22b-thinking-2507",
+   "name": "Qwen3 Thinking 2507",
+   "developer": "Alibaba Cloud",
+   "context_length": 32000,
+   "output_max": 16000,
+   "input_usd_1m": 0.299,
+   "output_usd_1m": 2.99,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.5-flash",
+   "name": "Qwen3.5 Flash",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.5-plus",
+   "name": "Qwen3.5 Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-coder-480b-a35b-instruct",
+   "name": "Qwen3 Coder",
+   "developer": "Alibaba Cloud",
+   "context_length": 262000,
+   "output_max": 65536,
+   "input_usd_1m": 1.95,
+   "output_usd_1m": 9.75,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-next-80b-a3b-thinking",
+   "name": "Qwen3 Next 80B A3B Thinking",
+   "developer": "Alibaba Cloud",
+   "context_length": 126976,
+   "output_max": 81920,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-next-80b-a3b-instruct",
+   "name": "Qwen3 Next 80B A3B Instruct",
+   "developer": "Alibaba Cloud",
+   "context_length": 129024,
+   "output_max": 16384,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-max-preview",
+   "name": "Qwen3 Max Preview",
+   "developer": "Alibaba Cloud",
+   "context_length": 252000,
+   "output_max": 32768,
+   "input_usd_1m": 1.56,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-max",
+   "name": "Qwen3 Max Instruct",
+   "developer": "Alibaba Cloud",
+   "context_length": 262144,
+   "output_max": 65536,
+   "input_usd_1m": 1.56,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-vl-plus",
+   "name": "Qwen3 VL Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 2.08,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-vl-flash",
+   "name": "Qwen3 VL Flash",
+   "developer": "Alibaba Cloud",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-vl-32b-thinking",
+   "name": "Qwen3 VL 32B Thinking",
+   "developer": "Alibaba Cloud",
+   "context_length": 126000,
+   "output_max": 32768,
+   "input_usd_1m": 0.91,
+   "output_usd_1m": 10.92,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-vl-32b-instruct",
+   "name": "Qwen3 VL 32B Instruct",
+   "developer": "Alibaba Cloud",
+   "context_length": 126000,
+   "output_max": 32768,
+   "input_usd_1m": 0.91,
+   "output_usd_1m": 3.64,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3-omni-30b-a3b-captioner",
+   "name": "Qwen3 Omni Captioner",
+   "developer": "Alibaba Cloud",
+   "context_length": 65536,
+   "output_max": 32768,
+   "input_usd_1m": 4.953,
+   "output_usd_1m": 3.978,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.5-omni-plus",
+   "name": "Qwen3.5 Omni Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 256000,
+   "output_max": 192000,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 10.79,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.5-omni-flash",
+   "name": "Qwen3.5 Omni Flash",
+   "developer": "Alibaba Cloud",
+   "context_length": 256000,
+   "output_max": 192000,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.6-max-preview",
+   "name": "Qwen3.6 Max Preview",
+   "developer": "Alibaba Cloud",
+   "context_length": 262144,
+   "output_max": 65536,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.8-max",
+   "name": "Qwen3.8 Max",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.7-plus",
+   "name": "Qwen3.7-Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.416,
+   "output_usd_1m": 1.664,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.6-plus",
+   "name": "Qwen3.6 Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.6-flash",
+   "name": "Qwen3.6 Flash",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.6-27b",
+   "name": "Qwen3.6 27B",
+   "developer": "Alibaba Cloud",
+   "context_length": 256000,
+   "output_max": 252000,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 4.68,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.6-35b-a3b",
+   "name": "Qwen3.6 35B A3B",
+   "developer": "Alibaba Cloud",
+   "context_length": 256000,
+   "output_max": 252000,
+   "input_usd_1m": 0.4875,
+   "output_usd_1m": 2.925,
+   "is_hottest": false
+  },
+  {
+   "id": "zhipu/glm-5-2-fast-preview",
+   "name": "GLM 5.2 Fast Preview",
+   "developer": "Zhipu AI",
+   "context_length": 1000000,
+   "output_max": 131072,
+   "input_usd_1m": 4.55,
+   "output_usd_1m": 14.3,
+   "is_hottest": false
+  },
+  {
+   "id": "alibaba/qwen3.5-plus-20260218",
+   "name": "Qwen3.5 Plus",
+   "developer": "Alibaba Cloud",
+   "context_length": 1000000,
+   "output_max": 65536,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "Qwen/Qwen2.5-7B-Instruct-Turbo",
+   "name": "Qwen2.5 7B Instruct Turbo",
+   "developer": "Alibaba Cloud",
+   "context_length": 32000,
+   "output_max": 31000,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+   "name": "Qwen3 Next 80B A3B Thinking",
+   "developer": "Alibaba Cloud",
+   "context_length": 126976,
+   "output_max": 81920,
+   "input_usd_1m": 0.845,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+   "name": "Qwen3 Coder",
+   "developer": "Alibaba Cloud",
+   "context_length": 262000,
+   "output_max": 65536,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/MiniMax-Text-01",
+   "name": "Text 01",
+   "developer": "Minimax AI",
+   "context_length": 1000000,
+   "output_max": 40000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.43,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m1",
+   "name": "MiniMax M1",
+   "developer": "Minimax AI",
+   "context_length": 1000000,
+   "output_max": 40960,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.86,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2",
+   "name": "MiniMax M2",
+   "developer": "Minimax AI",
+   "context_length": 1000000,
+   "output_max": 40960,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-her",
+   "name": "MiniMax M2-her",
+   "developer": "Minimax AI",
+   "context_length": 64000,
+   "output_max": 2048,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-1",
+   "name": "MiniMax M2.1",
+   "developer": "Minimax AI",
+   "context_length": 204000,
+   "output_max": 204000,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-1-highspeed",
+   "name": "MiniMax M2.1 Highspeed",
+   "developer": "Minimax AI",
+   "context_length": 204800,
+   "output_max": 204800,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-5-20260218",
+   "name": "MiniMax M2.5",
+   "developer": "Minimax AI",
+   "context_length": 204800,
+   "output_max": 204800,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-7-20260402",
+   "name": "MiniMax M2.7",
+   "developer": "Minimax AI",
+   "context_length": 204800,
+   "output_max": 204800,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-7-highspeed",
+   "name": "MiniMax M2.7 Highspeed",
+   "developer": "Minimax AI",
+   "context_length": 204800,
+   "output_max": 204800,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "minimax/m2-5-highspeed-20260218",
+   "name": "MiniMax M2.5 Highspeed",
+   "developer": "Minimax AI",
+   "context_length": 204800,
+   "output_max": 204800,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.12,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshot/kimi-k2-5",
+   "name": "Kimi K2.5",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 131000,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshot/kimi-k2-6",
+   "name": "Kimi K2.6",
+   "developer": "Moonshot",
+   "context_length": 262000,
+   "output_max": 260000,
+   "input_usd_1m": 1.235,
+   "output_usd_1m": 5.2,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshot/kimi-k2-7-code",
+   "name": "Kimi K2.7 Code",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 260000,
+   "input_usd_1m": 1.235,
+   "output_usd_1m": 5.2,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshot/kimi-k2-7-code-highspeed",
+   "name": "Kimi K2.7 Code Highspeed",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 260000,
+   "input_usd_1m": 2.47,
+   "output_usd_1m": 10.4,
+   "is_hottest": false
+  },
+  {
+   "id": "anthracite-org/magnum-v4-72b",
+   "name": "Magnum v4 72B",
+   "developer": "Anthracite",
+   "context_length": 32000,
+   "output_max": 16384,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 6.5,
+   "is_hottest": false
+  },
+  {
+   "id": "gryphe/mythomax-l2-13b",
+   "name": "MythoMax 13B",
+   "developer": "Gryphe",
+   "context_length": 4096,
+   "output_max": 4096,
+   "input_usd_1m": 2.4375,
+   "output_usd_1m": 2.4375,
+   "is_hottest": false
+  },
+  {
+   "id": "baidu/ernie-4.5-vl-424b-a47b",
+   "name": "Ernie 4.5 VL 424B A47B",
+   "developer": "Baidu",
+   "context_length": 123000,
+   "output_max": 123000,
+   "input_usd_1m": 0.5577,
+   "output_usd_1m": 1.677,
+   "is_hottest": false
+  },
+  {
+   "id": "baidu/ernie-5.0",
+   "name": "ERNIE 5.0",
+   "developer": "Baidu",
+   "context_length": 128000,
+   "output_max": 65536,
+   "input_usd_1m": 1.82,
+   "output_usd_1m": 7.28,
+   "is_hottest": false
+  },
+  {
+   "id": "nvidia/nemotron-3-nano-30b-a3b",
+   "name": "Nemotron 3 Nano 30B A3B",
+   "developer": "Nvidia",
+   "context_length": 262144,
+   "output_max": 228000,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.26,
+   "is_hottest": false
+  },
+  {
+   "id": "nvidia/nemotron-3-super-120b-a12b",
+   "name": "Nemotron 3 Super 120B A12B",
+   "developer": "Nvidia",
+   "context_length": 262144,
+   "output_max": 262144,
+   "input_usd_1m": 0.117,
+   "output_usd_1m": 0.585,
+   "is_hottest": false
+  },
+  {
+   "id": "nvidia/nemotron-3-ultra-550b-a55b",
+   "name": "Nemotron 3 Ultra 550B A55B",
+   "developer": "Nvidia",
+   "context_length": 1000000,
+   "output_max": 32768,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "nousresearch/hermes-4-405b",
+   "name": "Hermes 4 405B",
+   "developer": "NousResearch",
+   "context_length": 131072,
+   "output_max": 16000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "nousresearch/hermes-4-70b",
+   "name": "Hermes 4 70B",
+   "developer": "NousResearch",
+   "context_length": 131072,
+   "output_max": null,
+   "input_usd_1m": 0.169,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "nousresearch/hermes-3-llama-3.1-70b",
+   "name": "Hermes 3 70B Instruct",
+   "developer": "NousResearch",
+   "context_length": 131072,
+   "output_max": 16384,
+   "input_usd_1m": 0.91,
+   "output_usd_1m": 0.91,
+   "is_hottest": false
+  },
+  {
+   "id": "nousresearch/hermes-3-llama-3.1-405b",
+   "name": "Hermes 3 405B Instruct",
+   "developer": "NousResearch",
+   "context_length": 131072,
+   "output_max": 16384,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 1.3,
+   "is_hottest": false
+  },
+  {
+   "id": "cohere/command-a",
+   "name": "Command A",
+   "developer": "Cohere",
+   "context_length": 256000,
+   "output_max": 256000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "cohere/command-r7b-12-2024",
+   "name": "Command R7B (12-2024)",
+   "developer": "Cohere",
+   "context_length": 128000,
+   "output_max": 4000,
+   "input_usd_1m": 0.04875,
+   "output_usd_1m": 0.195,
+   "is_hottest": false
+  },
+  {
+   "id": "cohere/command-r-08-2024",
+   "name": "Command R (08-2024)",
+   "developer": "Cohere",
+   "context_length": 128000,
+   "output_max": 4000,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "cohere/command-r-plus-08-2024",
+   "name": "Command R+ (08-2024)",
+   "developer": "Cohere",
+   "context_length": 128000,
+   "output_max": 4000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 13.0,
+   "is_hottest": false
+  },
+  {
+   "id": "perplexity/sonar",
+   "name": "Sonar",
+   "developer": "Perplexity",
+   "context_length": 128000,
+   "output_max": 100000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 1.3,
+   "is_hottest": false
+  },
+  {
+   "id": "perplexity/sonar-pro",
+   "name": "Sonar Pro",
+   "developer": "Perplexity",
+   "context_length": 200000,
+   "output_max": 100000,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-3-beta",
+   "name": "Grok 3 Beta",
+   "developer": "X AI",
+   "context_length": 131000,
+   "output_max": 130000,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 19.5,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-3-mini-beta",
+   "name": "Grok 3 Beta Mini",
+   "developer": "X AI",
+   "context_length": 131000,
+   "output_max": 130000,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-fast-reasoning",
+   "name": "Grok 4 Fast Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-fast-non-reasoning",
+   "name": "Grok 4 Fast Non-Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-1-fast-reasoning",
+   "name": "Grok 4.1 Fast Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-1-fast-non-reasoning",
+   "name": "Grok 4.1 Fast Non-Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-3",
+   "name": "Grok 4.3",
+   "developer": "X AI",
+   "context_length": 1000000,
+   "output_max": 1000000,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-20-0309-reasoning",
+   "name": "Grok 4.20 Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-4-20-0309-non-reasoning",
+   "name": "Grok 4.20 Non-Reasoning",
+   "developer": "X AI",
+   "context_length": 2000000,
+   "output_max": 1999000,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-code-fast-1",
+   "name": "Grok Code Fast 1",
+   "developer": "X AI",
+   "context_length": 256000,
+   "output_max": 255000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "x-ai/grok-build-0-1",
+   "name": "Grok Build 0.1",
+   "developer": "X AI",
+   "context_length": 0,
+   "output_max": null,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "mistral/labs-leanstral-1-5",
+   "name": "Leanstral 1.5",
+   "developer": "Mistral AI",
+   "context_length": 256000,
+   "output_max": null,
+   "input_usd_1m": 0.0,
+   "output_usd_1m": 0.0,
+   "is_hottest": false
+  },
+  {
+   "id": "mistral/leanstral-1-5",
+   "name": "Leanstral 1.5",
+   "developer": "Mistral AI",
+   "context_length": 256000,
+   "output_max": null,
+   "input_usd_1m": 0.0,
+   "output_usd_1m": 0.0,
+   "is_hottest": false
+  },
+  {
+   "id": "xiaomi/mimo-v2.5",
+   "name": "MiMo V2.5",
+   "developer": "Xiaomi",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "xiaomi/mimo-v2.5-pro",
+   "name": "MiMo V2.5 Pro",
+   "developer": "Xiaomi",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "stepfun/step-3.7-flash",
+   "name": "Step 3.7 Flash",
+   "developer": "StepFun",
+   "context_length": 256000,
+   "output_max": 256000,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.495,
+   "is_hottest": false
+  },
+  {
+   "id": "sakana/fugu-ultra",
+   "name": "Fugu Ultra",
+   "developer": "Sakana AI",
+   "context_length": 1000000,
+   "output_max": 128000,
+   "input_usd_1m": 6.5,
+   "output_usd_1m": 39.0,
+   "is_hottest": false
+  },
+  {
+   "id": "tencent/hy3",
+   "name": "Hy3",
+   "developer": "Tencent",
+   "context_length": 262144,
+   "output_max": 131072,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.04,
+   "is_hottest": false
+  },
+  {
+   "id": "ai21/jamba-large-1.7",
+   "name": "Jamba Large 1.7",
+   "developer": "AI21",
+   "context_length": 256000,
+   "output_max": 4096,
+   "input_usd_1m": 2.6,
+   "output_usd_1m": 10.4,
+   "is_hottest": false
+  },
+  {
+   "id": "aion-labs/aion-3.0-mini",
+   "name": "Aion-3.0-Mini",
+   "developer": "AionLabs",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 0.91,
+   "output_usd_1m": 1.82,
+   "is_hottest": false
+  },
+  {
+   "id": "aion-labs/aion-2.0",
+   "name": "Aion-2.0",
+   "developer": "AionLabs",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 1.04,
+   "output_usd_1m": 2.08,
+   "is_hottest": false
+  },
+  {
+   "id": "aion-labs/aion-3.0",
+   "name": "Aion-3.0",
+   "developer": "AionLabs",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 3.9,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "aion-labs/aion-rp-llama-3.1-8b",
+   "name": "Aion-RP 1.0 (8B)",
+   "developer": "AionLabs",
+   "context_length": 32768,
+   "output_max": 32768,
+   "input_usd_1m": 1.04,
+   "output_usd_1m": 2.08,
+   "is_hottest": false
+  },
+  {
+   "id": "allenai/olmo-3-32b-think",
+   "name": "Olmo 3 32B Think",
+   "developer": "AllenAI",
+   "context_length": 65536,
+   "output_max": 65536,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "amazon/nova-2-lite-v1",
+   "name": "Nova 2 Lite",
+   "developer": "Amazon",
+   "context_length": 1000000,
+   "output_max": 65535,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "amazon/nova-premier-v1",
+   "name": "Nova Premier 1.0",
+   "developer": "Amazon",
+   "context_length": 1000000,
+   "output_max": 32000,
+   "input_usd_1m": 3.25,
+   "output_usd_1m": 16.25,
+   "is_hottest": false
+  },
+  {
+   "id": "amazon/nova-lite-v1",
+   "name": "Nova Lite 1.0",
+   "developer": "Amazon",
+   "context_length": 300000,
+   "output_max": 5120,
+   "input_usd_1m": 0.078,
+   "output_usd_1m": 0.312,
+   "is_hottest": false
+  },
+  {
+   "id": "amazon/nova-micro-v1",
+   "name": "Nova Micro 1.0",
+   "developer": "Amazon",
+   "context_length": 128000,
+   "output_max": 5120,
+   "input_usd_1m": 0.0455,
+   "output_usd_1m": 0.182,
+   "is_hottest": false
+  },
+  {
+   "id": "amazon/nova-pro-v1",
+   "name": "Nova Pro 1.0",
+   "developer": "Amazon",
+   "context_length": 300000,
+   "output_max": 5120,
+   "input_usd_1m": 1.04,
+   "output_usd_1m": 4.16,
+   "is_hottest": false
+  },
+  {
+   "id": "arcee-ai/trinity-large-thinking",
+   "name": "Trinity Large Thinking",
+   "developer": "Arcee AI",
+   "context_length": 262144,
+   "output_max": 80000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 1.04,
+   "is_hottest": false
+  },
+  {
+   "id": "arcee-ai/virtuoso-large",
+   "name": "Virtuoso Large",
+   "developer": "Arcee AI",
+   "context_length": 131072,
+   "output_max": 64000,
+   "input_usd_1m": 0.975,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance-seed/seed-2.0-lite",
+   "name": "Seed-2.0-Lite",
+   "developer": "ByteDance",
+   "context_length": 262144,
+   "output_max": 131072,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance-seed/seed-2.0-mini",
+   "name": "Seed-2.0-Mini",
+   "developer": "ByteDance",
+   "context_length": 262144,
+   "output_max": 131072,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance-seed/seed-1.6-flash",
+   "name": "Seed 1.6 Flash",
+   "developer": "ByteDance",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.39,
+   "is_hottest": false
+  },
+  {
+   "id": "bytedance-seed/seed-1.6",
+   "name": "Seed 1.6",
+   "developer": "ByteDance",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 2.6,
+   "is_hottest": false
+  },
+  {
+   "id": "cognitivecomputations/dolphin-mistral-24b-venice-edition",
+   "name": "Venice Uncensored",
+   "developer": "Venice",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.26,
+   "output_usd_1m": 1.17,
+   "is_hottest": false
+  },
+  {
+   "id": "deepcogito/cogito-v2.1-671b",
+   "name": "Cogito v2.1 671B",
+   "developer": "Deep Cogito",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 1.625,
+   "output_usd_1m": 1.625,
+   "is_hottest": false
+  },
+  {
+   "id": "ibm-granite/granite-4.1-8b",
+   "name": "Granite 4.1 8B",
+   "developer": "IBM",
+   "context_length": 131072,
+   "output_max": 131072,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.13,
+   "is_hottest": false
+  },
+  {
+   "id": "ibm-granite/granite-4.0-h-micro",
+   "name": "Granite 4.0 Micro",
+   "developer": "IBM",
+   "context_length": 131000,
+   "output_max": 131000,
+   "input_usd_1m": 0.0221,
+   "output_usd_1m": 0.1456,
+   "is_hottest": false
+  },
+  {
+   "id": "inception/mercury-2",
+   "name": "Mercury 2",
+   "developer": "Inception",
+   "context_length": 128000,
+   "output_max": 50000,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 0.975,
+   "is_hottest": false
+  },
+  {
+   "id": "inclusionai/ring-2.6-1t",
+   "name": "Ring-2.6-1T",
+   "developer": "inclusionAI",
+   "context_length": 262144,
+   "output_max": 65536,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.8125,
+   "is_hottest": false
+  },
+  {
+   "id": "inclusionai/ling-2.6-1t",
+   "name": "Ling-2.6-1T",
+   "developer": "inclusionAI",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.0975,
+   "output_usd_1m": 0.8125,
+   "is_hottest": false
+  },
+  {
+   "id": "inclusionai/ling-2.6-flash",
+   "name": "Ling-2.6-flash",
+   "developer": "inclusionAI",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.013,
+   "output_usd_1m": 0.039,
+   "is_hottest": false
+  },
+  {
+   "id": "inclusionai/ling-3.0-flash",
+   "name": "Ling-3.0-flash",
+   "developer": "inclusionAI",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.0,
+   "output_usd_1m": 0.0,
+   "is_hottest": false
+  },
+  {
+   "id": "kwaipilot/kat-coder-pro-v2",
+   "name": "KAT-Coder-Pro V2",
+   "developer": "Kwaipilot",
+   "context_length": 256000,
+   "output_max": 80000,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "kwaipilot/kat-coder-pro-v2.5",
+   "name": "KAT-Coder-Pro V2.5",
+   "developer": "Kwaipilot",
+   "context_length": 256000,
+   "output_max": null,
+   "input_usd_1m": 0.962,
+   "output_usd_1m": 3.848,
+   "is_hottest": false
+  },
+  {
+   "id": "kwaipilot/kat-coder-air-v2.5",
+   "name": "KAT-Coder-Air V2.5",
+   "developer": "Kwaipilot",
+   "context_length": 256000,
+   "output_max": null,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "mancer/weaver",
+   "name": "Weaver (alpha)",
+   "developer": "Mancer",
+   "context_length": 8000,
+   "output_max": 2000,
+   "input_usd_1m": 0.975,
+   "output_usd_1m": 1.3,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshotai/kimi-latest",
+   "name": "Kimi Latest",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 262144,
+   "input_usd_1m": 0.858,
+   "output_usd_1m": 4.433,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshotai/kimi-k2-thinking",
+   "name": "Kimi K2 Thinking",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 100352,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshotai/kimi-k2-0905",
+   "name": "Kimi K2 0905",
+   "developer": "Moonshot",
+   "context_length": 262144,
+   "output_max": 100352,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "moonshotai/kimi-k2",
+   "name": "Kimi K2 0711",
+   "developer": "Moonshot",
+   "context_length": 131072,
+   "output_max": 100352,
+   "input_usd_1m": 0.741,
+   "output_usd_1m": 2.99,
+   "is_hottest": false
+  },
+  {
+   "id": "morph/morph-v3-large",
+   "name": "V3 Large",
+   "developer": "Morph",
+   "context_length": 262144,
+   "output_max": 131072,
+   "input_usd_1m": 1.17,
+   "output_usd_1m": 2.47,
+   "is_hottest": false
+  },
+  {
+   "id": "morph/morph-v3-fast",
+   "name": "V3 Fast",
+   "developer": "Morph",
+   "context_length": 81920,
+   "output_max": 38000,
+   "input_usd_1m": 1.04,
+   "output_usd_1m": 1.56,
+   "is_hottest": false
+  },
+  {
+   "id": "nex-agi/nex-n2-mini",
+   "name": "Nex-N2-Mini",
+   "developer": "Nex AGI",
+   "context_length": 262144,
+   "output_max": 262144,
+   "input_usd_1m": 0.0325,
+   "output_usd_1m": 0.13,
+   "is_hottest": false
+  },
+  {
+   "id": "nex-agi/nex-n2-pro",
+   "name": "Nex-N2-Pro",
+   "developer": "Nex AGI",
+   "context_length": 262144,
+   "output_max": 262144,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 3.25,
+   "is_hottest": false
+  },
+  {
+   "id": "perceptron/perceptron-mk1",
+   "name": "Mk1",
+   "developer": "Perceptron",
+   "context_length": 32768,
+   "output_max": 8192,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 1.95,
+   "is_hottest": false
+  },
+  {
+   "id": "poolside/laguna-xs-2.1",
+   "name": "Laguna XS 2.1",
+   "developer": "Poolside",
+   "context_length": 262144,
+   "output_max": 32768,
+   "input_usd_1m": 0.078,
+   "output_usd_1m": 0.156,
+   "is_hottest": false
+  },
+  {
+   "id": "poolside/laguna-s-2.1",
+   "name": "Laguna S 2.1",
+   "developer": "Poolside",
+   "context_length": 1048576,
+   "output_max": 131072,
+   "input_usd_1m": 0.078,
+   "output_usd_1m": 0.156,
+   "is_hottest": false
+  },
+  {
+   "id": "rekaai/reka-edge",
+   "name": "Reka Edge",
+   "developer": "RekaAI",
+   "context_length": 16384,
+   "output_max": 16384,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.13,
+   "is_hottest": false
+  },
+  {
+   "id": "rekaai/reka-flash-3",
+   "name": "Reka Flash 3",
+   "developer": "RekaAI",
+   "context_length": 65536,
+   "output_max": 65536,
+   "input_usd_1m": 0.13,
+   "output_usd_1m": 0.26,
+   "is_hottest": false
+  },
+  {
+   "id": "relace/relace-search",
+   "name": "Search",
+   "developer": "Relace",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 3.9,
+   "is_hottest": false
+  },
+  {
+   "id": "relace/relace-apply-3",
+   "name": "Apply 3",
+   "developer": "Relace",
+   "context_length": 256000,
+   "output_max": 128000,
+   "input_usd_1m": 1.105,
+   "output_usd_1m": 1.625,
+   "is_hottest": false
+  },
+  {
+   "id": "sao10k/l3.3-euryale-70b",
+   "name": "Llama 3.3 Euryale 70B",
+   "developer": "Sao10K",
+   "context_length": 131072,
+   "output_max": 16384,
+   "input_usd_1m": 0.845,
+   "output_usd_1m": 0.975,
+   "is_hottest": false
+  },
+  {
+   "id": "sao10k/l3.1-euryale-70b",
+   "name": "Llama 3.1 Euryale 70B v2.2",
+   "developer": "Sao10K",
+   "context_length": 131072,
+   "output_max": 16384,
+   "input_usd_1m": 1.88552,
+   "output_usd_1m": 1.88552,
+   "is_hottest": false
+  },
+  {
+   "id": "sao10k/l3-lunaris-8b",
+   "name": "Llama 3 8B Lunaris",
+   "developer": "Sao10K",
+   "context_length": 8192,
+   "output_max": 16384,
+   "input_usd_1m": 0.065,
+   "output_usd_1m": 0.065,
+   "is_hottest": false
+  },
+  {
+   "id": "thedrummer/cydonia-24b-v4.1",
+   "name": "Cydonia 24B V4.1",
+   "developer": "TheDrummer",
+   "context_length": 131072,
+   "output_max": 131072,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "thedrummer/skyfall-36b-v2",
+   "name": "Skyfall 36B V2",
+   "developer": "TheDrummer",
+   "context_length": 32768,
+   "output_max": 32768,
+   "input_usd_1m": 0.715,
+   "output_usd_1m": 1.04,
+   "is_hottest": false
+  },
+  {
+   "id": "thedrummer/unslopnemo-12b",
+   "name": "UnslopNemo 12B",
+   "developer": "TheDrummer",
+   "context_length": 32768,
+   "output_max": 32768,
+   "input_usd_1m": 0.52,
+   "output_usd_1m": 0.52,
+   "is_hottest": false
+  },
+  {
+   "id": "thedrummer/rocinante-12b",
+   "name": "Rocinante 12B",
+   "developer": "TheDrummer",
+   "context_length": 32768,
+   "output_max": null,
+   "input_usd_1m": 0.325,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "thinkingmachines/inkling",
+   "name": "Inkling",
+   "developer": "Thinking Machines",
+   "context_length": 1048576,
+   "output_max": null,
+   "input_usd_1m": 1.3,
+   "output_usd_1m": 5.265,
+   "is_hottest": false
+  },
+  {
+   "id": "thinkingmachines/inkling-small",
+   "name": "Inkling Small",
+   "developer": "Thinking Machines",
+   "context_length": 524288,
+   "output_max": 262144,
+   "input_usd_1m": 0.754,
+   "output_usd_1m": 1.872,
+   "is_hottest": false
+  },
+  {
+   "id": "undi95/remm-slerp-l2-13b",
+   "name": "ReMM SLERP 13B",
+   "developer": "Undi95",
+   "context_length": 6144,
+   "output_max": 4096,
+   "input_usd_1m": 0.65,
+   "output_usd_1m": 0.975,
+   "is_hottest": false
+  },
+  {
+   "id": "upstage/solar-pro-3",
+   "name": "Solar Pro 3",
+   "developer": "Upstage",
+   "context_length": 128000,
+   "output_max": null,
+   "input_usd_1m": 0.195,
+   "output_usd_1m": 0.78,
+   "is_hottest": false
+  },
+  {
+   "id": "writer/palmyra-x5",
+   "name": "Palmyra X5",
+   "developer": "Writer",
+   "context_length": 1040000,
+   "output_max": 8192,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 7.8,
+   "is_hottest": false
+  },
+  {
+   "id": "z-ai/glm-5-turbo",
+   "name": "GLM 5 Turbo",
+   "developer": "Zhipu AI",
+   "context_length": 262144,
+   "output_max": 131072,
+   "input_usd_1m": 1.56,
+   "output_usd_1m": 5.2,
+   "is_hottest": false
+  },
+  {
+   "id": "z-ai/glm-5v-turbo",
+   "name": "GLM 5V Turbo",
+   "developer": "Zhipu AI",
+   "context_length": 202752,
+   "output_max": 131072,
+   "input_usd_1m": 1.56,
+   "output_usd_1m": 5.2,
+   "is_hottest": false
+  },
+  {
+   "id": "z-ai/glm-4.7-flash",
+   "name": "GLM 4.7 Flash",
+   "developer": "Zhipu AI",
+   "context_length": 202752,
+   "output_max": 16384,
+   "input_usd_1m": 0.1625,
+   "output_usd_1m": 0.65,
+   "is_hottest": false
+  },
+  {
+   "id": "z-ai/glm-4.6v",
+   "name": "GLM 4.6V",
+   "developer": "Zhipu AI",
+   "context_length": 131072,
+   "output_max": 32768,
+   "input_usd_1m": 0.39,
+   "output_usd_1m": 1.17,
+   "is_hottest": false
+  },
+  {
+   "id": "z-ai/glm-4.5v",
+   "name": "GLM 4.5V",
+   "developer": "Zhipu AI",
+   "context_length": 65536,
+   "output_max": 16384,
+   "input_usd_1m": 0.78,
+   "output_usd_1m": 2.34,
+   "is_hottest": false
+  }
+ ]
+}

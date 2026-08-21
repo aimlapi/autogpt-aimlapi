@@ -1,4 +1,6 @@
 import useCredentials from "@/hooks/useCredentials";
+import { validateAimlapiApiKey } from "@/hooks/useAimlapiGetApiKey";
+import { toast } from "@/components/molecules/Toast/use-toast";
 import {
   BlockIOCredentialsSubSchema,
   CredentialsMetaInput,
@@ -56,6 +58,21 @@ export function useAPIKeyCredentialsModal({
     if (!credentials || credentials.isLoading) return;
     setIsSubmitting(true);
     try {
+      if (
+        credentials.provider === "aiml_api" &&
+        !(await validateAimlapiApiKey(values.apiKey))
+      ) {
+        form.setError("apiKey", {
+          message: "This aimlapi.com API key is invalid.",
+        });
+        toast({
+          title: "Invalid API key",
+          description: "This aimlapi.com API key is invalid.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const expiresAt = values.expiresAt
         ? new Date(values.expiresAt).getTime() / 1000
         : undefined;

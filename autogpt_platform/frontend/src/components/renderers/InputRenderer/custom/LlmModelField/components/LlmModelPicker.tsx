@@ -20,10 +20,14 @@ import { LlmIcon } from "./LlmIcon";
 import { LlmMenuHeader } from "./LlmMenuHeader";
 import { LlmMenuItem } from "./LlmMenuItem";
 import { LlmPriceTier } from "./LlmPriceTier";
-import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
+import { ArrowDown01Icon, StarIcon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/atoms/Icon/Icon";
 
 type MenuView = "creator" | "model" | "provider";
+
+// Synthetic first group holding every hottest model, so it reads like the
+// creator groups below it instead of a flat list.
+const RECOMMENDED_GROUP = "Recommended";
 
 type Props = {
   models: LlmModelMetadata[];
@@ -48,6 +52,11 @@ export function LlmModelPicker({
   const [activeTitle, setActiveTitle] = useState<string | null>(null);
 
   const modelsByCreator = useMemo(() => groupByCreator(models), [models]);
+
+  const hottestModels = useMemo(
+    () => models.filter((model) => model.is_hottest),
+    [models],
+  );
 
   const creators = useMemo(() => {
     return Array.from(modelsByCreator.keys()).sort((a, b) =>
@@ -79,8 +88,11 @@ export function LlmModelPicker({
   const currentCreator = activeCreator ?? creators[0] ?? null;
 
   const currentModels = useMemo(() => {
+    if (currentCreator === RECOMMENDED_GROUP) {
+      return hottestModels;
+    }
     return currentCreator ? (modelsByCreator.get(currentCreator) ?? []) : [];
-  }, [currentCreator, modelsByCreator]);
+  }, [currentCreator, modelsByCreator, hottestModels]);
 
   const currentCreatorIcon = useMemo(() => {
     return currentModels[0]?.creator ?? currentCreator;
@@ -160,16 +172,23 @@ export function LlmModelPicker({
       >
         {view === "creator" && (
           <div className="flex flex-col">
-            {recommendedModel && (
-              <>
-                <LlmMenuItem
-                  title={getModelDisplayName(recommendedModel)}
-                  subtitle="Recommended"
-                  icon={<LlmIcon value={recommendedModel.creator} />}
-                  onClick={() => handleSelectModel(recommendedModel.name)}
-                />
-                <div className="border-b border-zinc-200" />
-              </>
+            {hottestModels.length > 0 && (
+              <LlmMenuItem
+                title={RECOMMENDED_GROUP}
+                icon={
+                  <Icon
+                    icon={StarIcon}
+                    size={20}
+                    className="text-amber-500"
+                  />
+                }
+                showChevron={true}
+                isActive={selectedModel?.is_hottest ?? false}
+                onClick={() => {
+                  setActiveCreator(RECOMMENDED_GROUP);
+                  setView("model");
+                }}
+              />
             )}
             {creators.map((creator) => (
               <LlmMenuItem
@@ -203,7 +222,11 @@ export function LlmModelPicker({
               <LlmMenuItem
                 key={entry.title}
                 title={entry.title}
-                icon={<LlmIcon value={currentCreatorIcon} />}
+                icon={
+                  <LlmIcon
+                    value={entry.entries[0]?.creator ?? currentCreatorIcon}
+                  />
+                }
                 rightSlot={<LlmPriceTier tier={entry.entries[0]?.price_tier} />}
                 showChevron={entry.providerCount > 1}
                 isActive={

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Badge } from "@/components/atoms/Badge/Badge";
 import type { ConnectableProvider } from "../helpers";
 import { PlusSignIcon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/atoms/Icon/Icon";
@@ -41,8 +42,15 @@ export function ProviderRow({ provider, onSelect }: Props) {
         />
       )}
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-        <span className="truncate text-[14px] font-medium leading-[22px] text-zinc-800">
-          {provider.name}
+        <span className="flex items-center gap-2">
+          <span className="truncate text-[14px] font-medium leading-[22px] text-zinc-800">
+            {provider.name}
+          </span>
+          {provider.recommended ? (
+            <Badge variant="success" size="small">
+              Recommended
+            </Badge>
+          ) : null}
         </span>
         <span className="truncate text-[12px] leading-[20px] text-zinc-500">
           {provider.description ?? provider.id}

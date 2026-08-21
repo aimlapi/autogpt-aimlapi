@@ -17,16 +17,21 @@ the model database (data-as-code); splitting it would scatter the one
 place model facts live.
 """
 
+import logging
 from datetime import datetime, timezone
 
+from backend.data.llm_registry.aiml_catalog import aiml_catalog_additions
 from backend.data.llm_registry.catalog_model import (
     CATALOG_SCHEMA_VERSION,
+    MAX_CATALOG_MODELS,
     CatalogCreator,
     CatalogModel,
     CatalogModelCost,
     CatalogPayload,
     CatalogProvider,
 )
+
+logger = logging.getLogger(__name__)
 
 _catalog_cache: CatalogPayload | None = None
 
@@ -44,7 +49,47 @@ def get_catalog() -> CatalogPayload:
     return _catalog_cache
 
 
+
 def _build_catalog() -> CatalogPayload:
+    """Canonical catalog, extended with the AIMLAPI aggregator models.
+
+    AIMLAPI resells hundreds of models behind one key and its line-up moves
+    faster than our deploy cadence, so those entries are loaded (live, with a
+    committed snapshot fallback) instead of hand-authored above. Everything
+    downstream — the registry view, block metadata, cost config — reads them
+    through the ordinary catalog path.
+
+    This is the one place the catalog is not purely file-derived; the loader
+    never raises and never blocks boot, so a failed fetch degrades to the
+    snapshot and then to the static catalog alone.
+    """
+    static = _build_static_catalog()
+    creators, models = aiml_catalog_additions(
+        {c.name for c in static.creators}, {m.slug for m in static.models}
+    )
+    if not models:
+        return static
+    budget = MAX_CATALOG_MODELS - len(static.models)
+    if len(models) > budget:
+        logger.warning(
+            "AIMLAPI catalog yielded %d models, truncating to the remaining "
+            "catalog budget of %d",
+            len(models),
+            budget,
+        )
+        models = models[:budget]
+    # ``model_copy`` rather than a fresh ``CatalogPayload``: each injected
+    # entry was already validated at construction, and re-validating the full
+    # several-hundred-model payload on every boot buys nothing.
+    return static.model_copy(
+        update={
+            "creators": [*static.creators, *creators],
+            "models": [*static.models, *models],
+        }
+    )
+
+
+def _build_static_catalog() -> CatalogPayload:
     return CatalogPayload(
         schema_version=CATALOG_SCHEMA_VERSION,
         generated_at=datetime(2026, 7, 18, tzinfo=timezone.utc),

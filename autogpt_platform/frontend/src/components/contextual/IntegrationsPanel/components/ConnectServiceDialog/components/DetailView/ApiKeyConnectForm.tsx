@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/atoms/Button/Button";
 import { Input } from "@/components/atoms/Input/Input";
+import { Text } from "@/components/atoms/Text/Text";
 import {
   Form,
   FormControl,
@@ -23,10 +24,13 @@ export function ApiKeyConnectForm({
   providerName,
   onSuccess,
 }: Props) {
-  const { form, handleSubmit, isPending } = useApiKeyConnectForm({
-    provider,
-    onSuccess,
-  });
+  const isAimlapi = provider === "aiml_api";
+  const { form, handleSubmit, isPending, getApiKey, oauthStatus, oauthMessage } =
+    useApiKeyConnectForm({
+      provider,
+      defaultTitle: isAimlapi ? `My ${providerName} key` : undefined,
+      onSuccess,
+    });
 
   return (
     <Form form={form} onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -56,16 +60,61 @@ export function ApiKeyConnectForm({
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input
-                {...field}
-                id={field.name}
-                type="password"
-                autoComplete="new-password"
-                spellCheck={false}
-                label="API key"
-                placeholder="sk-..."
-                wrapperClassName="!mb-0"
-              />
+              {isAimlapi ? (
+                <div className="flex flex-col gap-1.5">
+                  <Text variant="large-medium" as="span" className="text-black">
+                    API key
+                  </Text>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1">
+                      <Input
+                        {...field}
+                        id={field.name}
+                        type="password"
+                        autoComplete="new-password"
+                        spellCheck={false}
+                        label="API key"
+                        hideLabel
+                        placeholder="sk-..."
+                        wrapperClassName="!mb-0"
+                      />
+                    </div>
+                    <span className="text-sm text-zinc-400">or</span>
+                    <Button
+                      type="button"
+                      variant="primary"
+                      size="large"
+                      className="!h-[2.875rem] !min-w-[11.55rem] !rounded-xl"
+                      onClick={getApiKey}
+                      loading={oauthStatus === "authorizing"}
+                      disabled={oauthStatus === "authorizing"}
+                    >
+                      Get API key
+                    </Button>
+                  </div>
+                  {oauthStatus === "success" && oauthMessage ? (
+                    <p className="text-sm font-medium text-green-600">
+                      {oauthMessage}
+                    </p>
+                  ) : null}
+                  {oauthStatus === "error" && oauthMessage ? (
+                    <p className="text-sm font-medium text-red-600">
+                      {oauthMessage}
+                    </p>
+                  ) : null}
+                </div>
+              ) : (
+                <Input
+                  {...field}
+                  id={field.name}
+                  type="password"
+                  autoComplete="new-password"
+                  spellCheck={false}
+                  label="API key"
+                  placeholder="sk-..."
+                  wrapperClassName="!mb-0"
+                />
+              )}
             </FormControl>
             <FormMessage />
           </FormItem>

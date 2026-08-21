@@ -10,11 +10,16 @@ import {
   postV1CreateCredentials,
 } from "@/app/api/__generated__/endpoints/integrations/integrations";
 import { toast } from "@/components/molecules/Toast/use-toast";
+import {
+  useAimlapiGetApiKey,
+  validateAimlapiApiKey,
+} from "@/hooks/useAimlapiGetApiKey";
 
 import { apiKeyConnectSchema, type ApiKeyConnectFormValues } from "./schema";
 
 interface Args {
   provider: string;
+  defaultTitle?: string;
   onSuccess: () => void;
 }
 
@@ -25,23 +30,36 @@ function toUnixSeconds(value: string | undefined): number | undefined {
   return Math.floor(ms / 1000);
 }
 
-export function useApiKeyConnectForm({ provider, onSuccess }: Args) {
+export function useApiKeyConnectForm({ provider, defaultTitle, onSuccess }: Args) {
   const queryClient = useQueryClient();
   const [isPending, setIsPending] = useState(false);
 
   const form = useForm<ApiKeyConnectFormValues>({
     resolver: zodResolver(apiKeyConnectSchema),
-    defaultValues: { title: "", apiKey: "", expiresAt: "" },
+    defaultValues: { title: defaultTitle ?? "", apiKey: "", expiresAt: "" },
     mode: "onChange",
   });
+
+  const { getApiKey, oauthStatus, oauthMessage } = useAimlapiGetApiKey((key) =>
+    form.setValue("apiKey", key, { shouldValidate: true, shouldDirty: true }),
+  );
 
   async function handleSubmit(values: ApiKeyConnectFormValues) {
     setIsPending(true);
     try {
+      if (provider === "aiml_api" && !(await validateAimlapiApiKey(values.apiKey))) {
+        form.setError("apiKey", {
+          message: "This aimlapi.com API key is invalid.",
+        });
+        toast({
+          title: "Invalid API key",
+          description: "This aimlapi.com API key is invalid.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // customMutator throws on non-2xx, so reaching this line means success.
-      // Trust HTTP semantics rather than pinning to a specific 2xx code —
-      // proxies / future backend changes can swap 201 ↔ 200 without this
-      // breaking and silently failing in production.
       await postV1CreateCredentials(provider, {
         provider,
         type: "api_key",
@@ -67,5 +85,12 @@ export function useApiKeyConnectForm({ provider, onSuccess }: Args) {
     }
   }
 
-  return { form, handleSubmit, isPending };
+  return {
+    form,
+    handleSubmit,
+    isPending,
+    getApiKey,
+    oauthStatus,
+    oauthMessage,
+  };
 }

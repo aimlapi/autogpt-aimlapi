@@ -39,6 +39,7 @@ from backend.blocks.jina.embeddings import JinaEmbeddingBlock
 from backend.blocks.jina.fact_checker import FactCheckerBlock
 from backend.blocks.jina.search import ExtractWebsiteContentBlock, SearchTheWebBlock
 from backend.blocks.llm import (
+    AIML_TOKEN_PRICING,
     MODEL_METADATA,
     AIConversationBlock,
     AIListGeneratorBlock,
@@ -174,6 +175,14 @@ def _token_cost_from_catalog() -> dict[LLMModel, TokenRate]:
 
 
 TOKEN_COST: dict[LLMModel, TokenRate] = _token_cost_from_catalog()
+
+# Per-token rates for the dynamically-injected AIMLAPI models, derived from the
+# catalog's published USD price. Credits/1M = USD/1M × 100 (1 credit ≈ $0.01)
+# × 1.5 margin — the same conversion the static entries above use.
+for _aiml_model, (_in_usd, _out_usd) in AIML_TOKEN_PRICING.items():
+    TOKEN_COST[_aiml_model] = TokenRate(
+        input=round(_in_usd * 150), output=round(_out_usd * 150)
+    )
 
 
 def compute_token_credits(
