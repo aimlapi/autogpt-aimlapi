@@ -26,6 +26,13 @@ ENV NEXT_PUBLIC_FRONTEND_BASE_URL=$NEXT_PUBLIC_FRONTEND_BASE_URL
 # (GET /billing/balance). Defaults to production; a staging deploy overrides it.
 ARG NEXT_PUBLIC_AIMLAPI_API_URL="https://api.aimlapi.com/v1"
 ENV NEXT_PUBLIC_AIMLAPI_API_URL=$NEXT_PUBLIC_AIMLAPI_API_URL
+# Partner id sent as X-AIMLAPI-Partner-ID on that same browser-side call. The
+# production id is valid on staging too, so this default fits both; it is only
+# overridden for a staging-only test id. Declared here because Next inlines
+# NEXT_PUBLIC_* at build — without the ARG the override could not reach the
+# bundle at all.
+ARG NEXT_PUBLIC_AIMLAPI_PARTNER_ID="part_T70zDIEvQLKSMzMQ7asjdtKR"
+ENV NEXT_PUBLIC_AIMLAPI_PARTNER_ID=$NEXT_PUBLIC_AIMLAPI_PARTNER_ID
 ENV NODE_ENV="production"
 # Merge env files appropriately based on environment
 RUN if [ -f .env.production ]; then \

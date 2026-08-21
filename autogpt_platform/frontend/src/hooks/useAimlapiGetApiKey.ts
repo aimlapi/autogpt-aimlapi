@@ -10,6 +10,23 @@ const AIMLAPI_BASE_URL =
   process.env.NEXT_PUBLIC_AIMLAPI_API_URL?.replace(/\/$/, "") ||
   "https://api.aimlapi.com/v1";
 
+// Attribution pair, required on EVERY aimlapi.com request — not just sign-up.
+// The balance check below runs in the browser, so it cannot inherit the
+// backend client's default headers and has to carry them itself. The partner
+// id is valid on both staging and production, so it ships compiled in; the env
+// override exists only for a staging-only test id. Mirrors
+// backend/api/features/aimlapi/config.py.
+const AIMLAPI_SOURCE = "agent/autogpt";
+const AIMLAPI_PARTNER_ID =
+  process.env.NEXT_PUBLIC_AIMLAPI_PARTNER_ID || "part_T70zDIEvQLKSMzMQ7asjdtKR";
+
+function attributionHeaders(): Record<string, string> {
+  return {
+    "X-AIMLAPI-Source": AIMLAPI_SOURCE,
+    "X-AIMLAPI-Partner-ID": AIMLAPI_PARTNER_ID,
+  };
+}
+
 // Verify a manually-entered AIMLAPI key by calling the balance endpoint with it
 // (CORS-enabled, so the browser can hit it directly — no backend needed). A bad
 // key returns 401; anything else means the key authenticates. Returns false
@@ -18,7 +35,10 @@ const AIMLAPI_BASE_URL =
 export async function validateAimlapiApiKey(apiKey: string): Promise<boolean> {
   try {
     const res = await fetch(`${AIMLAPI_BASE_URL}/billing/balance`, {
-      headers: { Authorization: `Bearer ${apiKey}` },
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        ...attributionHeaders(),
+      },
     });
     return res.status !== 401;
   } catch {
