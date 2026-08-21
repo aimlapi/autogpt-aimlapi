@@ -150,9 +150,16 @@ def _load_snapshot() -> list[AimlModel]:
 
 
 def _fetch_live() -> list[AimlModel]:
+    # HEADERS.md: the attribution pair goes on EVERY aimlapi.com request, the
+    # catalog included — not just inference and sign-up. Imported lazily and
+    # from the feature config so there is exactly one definition of the pair;
+    # that module is stdlib-only, so this costs nothing at import time.
+    from backend.api.features.aimlapi.config import attribution_headers
+
     response = requests.get(
         _MODELS_URL,
         params={"include": "capabilities,modalities,pricing"},
+        headers=attribution_headers(),
         timeout=_FETCH_TIMEOUT_SECONDS,
     )
     response.raise_for_status()
